@@ -34,6 +34,5 @@ public class DeviceUtils {
 		Log.d("DeviceUtils", "deviceId==="+deviceId);
 		return deviceId;
 	}
-
  
 }

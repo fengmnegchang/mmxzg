@@ -119,7 +119,7 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 			    
 			    //jdbc
 //			    DBMySqlUtils.query();
-			    DBMySqlUtils.query(openbean);
+//			    DBMySqlUtils.query(openbean);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
