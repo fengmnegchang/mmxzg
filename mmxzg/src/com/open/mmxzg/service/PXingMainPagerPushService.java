@@ -12,20 +12,29 @@
 package com.open.mmxzg.service;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.view.WindowManager;
 
 import com.google.gson.Gson;
+import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
 import com.open.mmxzg.utils.UrlUtils;
-import com.open.mmxzg.R;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -43,6 +52,22 @@ public class PXingMainPagerPushService extends Service {
 	public static final String ACTION = "com.open.pxing.service.PXingMainPagerPushService";
 	private Notification mNotification;
 	private NotificationManager mManager;
+	private ExecutorService executorService = Executors.newFixedThreadPool(5); 
+	 
+	private Handler mHandler = new Handler(){
+		/* (non-Javadoc)
+		 * @see android.os.Handler#handleMessage(android.os.Message)
+		 */
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			if(msg.what==1000){
+				MArticleBean bean = (MArticleBean) msg.obj;
+				dialog(bean.getAlt(),bean.getHref());
+			}
+			super.handleMessage(msg);
+		}
+	};
 
 	@Override
 	public void onCreate() {
@@ -65,7 +90,8 @@ public class PXingMainPagerPushService extends Service {
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
-		new PollingThread().start();
+		executorService.submit(new PollingRunnable());
+//		new PollingThread().start();
 	}
 
 	@Override
@@ -107,24 +133,70 @@ public class PXingMainPagerPushService extends Service {
 	 * @Create 2013-7-13 上午10:18:34
 	 */
 	int count = 0;
-	class PollingThread extends Thread {
+//	class PollingThread extends Thread {
+//		@Override
+//		public void run() {
+//			countData();
+//		}
+//	}
+	
+	class PollingRunnable implements Runnable{
+		/* (non-Javadoc)
+		 * @see java.lang.Runnable#run()
+		 */
 		@Override
 		public void run() {
-			System.out.println(TAG+"... count==="+count);
-			count++;
-			// 当计数能被2整除时弹出通知
-			if (count % 2 == 0) {
-				List<MArticleBean> list = MArticleJsoupService.parsePXMainTopPager(UrlUtils.PXING,0);
-				if(list!=null && list.size()>0){
-					java.util.Random random=new java.util.Random();// 定义随机类
-					int size=random.nextInt(list.size());// 返回[0,10)集合中的整数，注意不包括10
-					MArticleBean bean = list.get(size);
-					showNotification(bean.getAlt(),bean.getHref());
-					Gson gson = new Gson();
-					System.out.println(gson.toJson(bean));
-				}
+			countData();
+		}
+		
+	}
+	
+	public void countData(){
+		System.out.println(TAG+"... count==="+count);
+		count++;
+		// 当计数能被2整除时弹出通知
+		if (count % 2 == 0) {
+			List<MArticleBean> list = MArticleJsoupService.parsePXMainTopPager(UrlUtils.PXING,0);
+			if(list!=null && list.size()>0){
+				java.util.Random random=new java.util.Random();// 定义随机类
+				int size=random.nextInt(list.size());// 返回[0,10)集合中的整数，注意不包括10
+				MArticleBean bean = list.get(size);
+				showNotification(bean.getAlt(),bean.getHref());
+				
+				Message msg = mHandler.obtainMessage();
+				msg.what=1000;
+				msg.obj = bean;
+				mHandler.sendMessage(msg);
+				
+				Gson gson = new Gson();
+				System.out.println(gson.toJson(bean));
 			}
 		}
+	}
+	
+	public void dialog(String alt,final String href){
+		Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(alt);
+		builder.setNegativeButton("取消", new OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		           // to do
+		    }
+		});
+		builder.setPositiveButton("确定", new OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		           // to do
+		    	Intent intent = new Intent(PXingMainPagerPushService.this, MImagePullListActivity.class);
+		    	intent.putExtra("URL", href);
+		    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+		    }
+		});
+		final AlertDialog dialog = builder.create();
+		//在dialog show前添加此代码，表示该dialog属于系统dialog。
+		dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+		dialog.show();
 	}
 
 }
