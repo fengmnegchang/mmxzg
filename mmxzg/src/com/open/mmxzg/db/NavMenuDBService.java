@@ -2,58 +2,49 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-8上午10:11:23
+ * @createTime:2017-8-10下午1:55:33
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-package com.open.mmxzg.bean.m;
+package com.open.mmxzg.db;
 
-import com.open.android.bean.CommonBean;
+import com.open.mmxzg.bean.m.MSlideMenuBean;
+import com.open.mmxzg.json.m.MSlideMenuJson;
+import com.open.mmxzg.utils.DBMySqlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-8上午10:11:23
+ * @createTime:2017-8-10下午1:55:33
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MSlideMenuBean extends CommonBean {
-	private String href;
-	private String title;
-	private int resid;
-	private String alt;
+public class NavMenuDBService {
 	
-	public String getAlt() {
-		return alt;
+	public static void navmenu(MSlideMenuJson mMSlideMenuJson){
+		try {
+			for(MSlideMenuBean bean:mMSlideMenuJson.getList()){
+				String query = "select * from navmenu where href='"+bean.getHref()+"'";
+				String insert = "insert into navmenu(href,alt) values('"+bean.getHref()+"','"+bean.getTitle()+"')";
+				String update = "update navmenu set alt='"+bean.getTitle() +"' where href='"+bean.getHref()+"'";  
+				if(DBMySqlUtils.query(query)){
+					DBMySqlUtils.update(update);
+				}else{
+					DBMySqlUtils.insert(new String[]{insert});
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
-	public void setAlt(String alt) {
-		this.alt = alt;
-	}
-	public String getHref() {
-		return href;
-	}
-	public void setHref(String href) {
-		this.href = href;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public int getResid() {
-		return resid;
-	}
-	public void setResid(int resid) {
-		this.resid = resid;
-	}
-	
 
 }

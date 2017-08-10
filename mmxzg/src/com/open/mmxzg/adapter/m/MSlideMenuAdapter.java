@@ -54,7 +54,7 @@ public class MSlideMenuAdapter extends CommonAdapter<MSlideMenuBean> {
 		}
 		final MSlideMenuBean bean = (MSlideMenuBean) getItem(position);
 		if (bean != null) {
-			viewHolder.text_title.setText(bean.getTitle());
+			viewHolder.text_title.setText((bean.getAlt()==null?"":bean.getAlt())+bean.getTitle());
 			if(bean.getResid()!=0){
 				viewHolder.img_icon.setImageResource(bean.getResid());
 				viewHolder.img_icon.setVisibility(View.VISIBLE);

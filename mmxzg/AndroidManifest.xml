@@ -228,6 +228,12 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_left_menu_list_desp" >
         </activity>
+        <!-- pxing tags menu -->
+        <activity
+            android:name="com.open.mmxzg.activity.m.MTagsMenuPullListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_tags_menu_list_desp" >
+        </activity>
          <!-- pxing slide menu-->
         <activity
             android:name="com.open.mmxzg.activity.m.MMainSlideMenuActivity"

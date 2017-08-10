@@ -27,10 +27,8 @@ import com.open.mmxzg.PXingWebViewActivity;
 import com.open.mmxzg.activity.m.MArticlePullListActivity;
 import com.open.mmxzg.adapter.m.MSlideMenuAdapter;
 import com.open.mmxzg.bean.m.MSlideMenuBean;
-import com.open.mmxzg.db.NavMenuDBService;
-import com.open.mmxzg.json.m.MArticleJson;
+import com.open.mmxzg.db.TagsContainerDBService;
 import com.open.mmxzg.json.m.MSlideMenuJson;
-import com.open.mmxzg.jsoup.m.MArticleJsoupService;
 import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
 
 /**
@@ -44,11 +42,11 @@ import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
  * @description:
  ***************************************************************************************************************************************************************************** 
  */
-public class MLeftMenuPullListFragmnet extends CommonPullToRefreshListFragment<MSlideMenuBean, MSlideMenuJson> {
+public class MTagsMenuPullListFragmnet extends CommonPullToRefreshListFragment<MSlideMenuBean, MSlideMenuJson> {
 	public MSlideMenuAdapter mMSlideMenuAdapter;
 
-	public static MLeftMenuPullListFragmnet newInstance(String url, boolean isVisibleToUser) {
-		MLeftMenuPullListFragmnet fragment = new MLeftMenuPullListFragmnet();
+	public static MTagsMenuPullListFragmnet newInstance(String url, boolean isVisibleToUser) {
+		MTagsMenuPullListFragmnet fragment = new MTagsMenuPullListFragmnet();
 		fragment.setFragment(fragment);
 		fragment.setUserVisibleHint(isVisibleToUser);
 		fragment.url = url;
@@ -78,9 +76,9 @@ public class MLeftMenuPullListFragmnet extends CommonPullToRefreshListFragment<M
 	public MSlideMenuJson call() throws Exception {
 		// TODO Auto-generated method stub
 		MSlideMenuJson mMSlideMenuJson = new MSlideMenuJson();
-		String typename = "MLeftMenuJsoupService-parseNavMenuList-"+pageNo;
+		String typename = "MLeftMenuJsoupService-parseTagsMenuList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseNavMenuList(url, pageNo));
+			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseTagsMenuList(url, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();
@@ -93,7 +91,7 @@ public class MLeftMenuPullListFragmnet extends CommonPullToRefreshListFragment<M
 				e.printStackTrace();
 			}
 			try {
-				NavMenuDBService.navmenu(mMSlideMenuJson);
+				TagsContainerDBService.tagsContainer(mMSlideMenuJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -2,7 +2,7 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-7下午5:38:26
+ * @createTime:2017-8-10下午3:30:07
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
@@ -17,21 +17,21 @@ import android.support.v4.app.Fragment;
 
 import com.open.android.R;
 import com.open.android.activity.common.CommonCommonFragmentActivity;
-import com.open.mmxzg.fragment.m.MLeftMenuPullListFragmnet;
+import com.open.mmxzg.fragment.m.MTagsMenuPullListFragmnet;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-7下午5:38:26
+ * @createTime:2017-8-10下午3:30:07
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MLeftMenuPullListActivity extends CommonCommonFragmentActivity{
+public class MTagsMenuPullListActivity extends CommonCommonFragmentActivity{
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -56,14 +56,14 @@ public class MLeftMenuPullListActivity extends CommonCommonFragmentActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MLeftMenuPullListFragmnet.newInstance(url, true);
+		Fragment fragment = MTagsMenuPullListFragmnet.newInstance(url, true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.id_common_fragment, fragment).commit();
 	}
 
-	public static void startMLeftMenuPullListActivity(Context context, String url) {
+	public static void startMTagsMenuPullListActivity(Context context, String url) {
 		Intent intent = new Intent();
 		intent.putExtra("URL", url);
-		intent.setClass(context, MLeftMenuPullListActivity.class);
+		intent.setClass(context, MTagsMenuPullListActivity.class);
 		context.startActivity(intent);
 	}
 }
