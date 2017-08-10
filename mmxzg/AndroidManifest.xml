@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.open.pxing"
+    package="com.open.mmxzg"
     android:versionCode="1"
     android:versionName="1.0" >
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -19,10 +19,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- the following 2 com.xiaomi.mipushdemo should be changed to your package name -->
     <permission
-        android:name="com.open.pxing.permission.MIPUSH_RECEIVE"
+        android:name="com.open.mmxzg.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.open.pxing.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.open.mmxzg.permission.MIPUSH_RECEIVE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-sdk
         android:minSdkVersion="14"
@@ -35,16 +35,16 @@
     
 
     <application
-        android:name="com.open.pxing.application.PXingApplication"
+        android:name="com.open.mmxzg.application.PXingApplication"
        android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name="com.open.pxing.service.PXingMainPagerPushService" />  
-        <receiver android:name="com.open.pxing.receiver.NetWorkConnectionChangeReceiver"   
+        <service android:name="com.open.mmxzg.service.PXingMainPagerPushService" />  
+        <receiver android:name="com.open.mmxzg.receiver.NetWorkConnectionChangeReceiver"   
              android:label="NetworkConnection">   
 	      <intent-filter>   
 	          <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>   
@@ -53,17 +53,17 @@
         
         <!-- 微信分享  -->
          <receiver
-            android:name="com.open.pxing.activity.wxapi.AppRegister"
+            android:name="com.open.mmxzg.activity.wxapi.AppRegister"
             android:permission="com.tencent.mm.plugin.permission.SEND" >
             <intent-filter>
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
             </intent-filter>
         </receiver>
         <activity
-            android:name="com.open.pxing.activity.wxapi.WXEntryActivity"
+            android:name="com.open.mmxzg.activity.wxapi.WXEntryActivity"
             android:label="@string/app_name"
             android:exported="true"
-             android:description="@string/pxing_weixin_wxapi_desp" 
+             android:description="@string/mmxzg_weixin_wxapi_desp" 
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -72,21 +72,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.open.pxing.activity.wxapi.SendToWXActivity"
+            android:name="com.open.mmxzg.activity.wxapi.SendToWXActivity"
             android:label="@string/app_name"
-             android:description="@string/pxing_weixin_send_to_wx_desp" 
+             android:description="@string/mmxzg_weixin_send_to_wx_desp" 
             />
         <!-- 微信分享 -->
         <!-- qq授权登陆 -->
         <activity
-            android:name="com.open.pxing.activity.qq.QQShareActivity"
+            android:name="com.open.mmxzg.activity.qq.QQShareActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:description="@string/pxing_qzone_share_desp" 
+            android:description="@string/mmxzg_qzone_share_desp" 
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.open.pxing.activity.qq.QZoneShareActivity"
+            android:name="com.open.mmxzg.activity.qq.QZoneShareActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:description="@string/pxing_qq_share_desp" 
+            android:description="@string/mmxzg_qq_share_desp" 
             android:windowSoftInputMode="stateAlwaysHidden" />
         
         <activity
@@ -131,7 +131,7 @@
             android:enabled="true" />
 
         <receiver
-            android:name="com.open.pxing.push.DemoMessageReceiver"
+            android:name="com.open.mmxzg.push.DemoMessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
@@ -184,221 +184,221 @@
         <activity
             android:name="com.open.android.activity.common.CommonWebViewActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_webview_desp" >
+            android:description="@string/mmxzg_webview_desp" >
         </activity>
         <!-- webview -->
         <activity
             android:name=".PXingWebViewActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_webview_desp" >
+            android:description="@string/mmxzg_webview_desp" >
         </activity>
          <!-- pxing 主列表 -->
         <activity
-            android:name="com.open.pxing.activity.m.MArticlePullListActivity"
+            android:name="com.open.mmxzg.activity.m.MArticlePullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_main_list_desp" >
+            android:description="@string/mmxzg_main_list_desp" >
         </activity>
          <!-- pxing 播放本地音频 -->
         <activity
-            android:name="com.open.pxing.activity.m.MMediaPlayerActivity"
+            android:name="com.open.mmxzg.activity.m.MMediaPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_media_player_desp" >
+            android:description="@string/mmxzg_media_player_desp" >
         </activity>
         <!-- pxing 播放本地视频 -->
         <activity
-            android:name="com.open.pxing.activity.m.MVideoViewActivity"
+            android:name="com.open.mmxzg.activity.m.MVideoViewActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_video_desp" >
+            android:description="@string/mmxzg_video_desp" >
         </activity>
          <!-- pxing sex列表 -->
         <activity
-            android:name="com.open.pxing.activity.m.MSexNovelPullListActivity"
+            android:name="com.open.mmxzg.activity.m.MSexNovelPullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_sex_novel_list_desp" >
+            android:description="@string/mmxzg_sex_novel_list_desp" >
         </activity>
         <!-- pxing 主列表grid -->
         <activity
-            android:name="com.open.pxing.activity.m.MArticlePullGridActivity"
+            android:name="com.open.mmxzg.activity.m.MArticlePullGridActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_main_grid_desp" >
+            android:description="@string/mmxzg_main_grid_desp" >
         </activity>
         <!-- pxing left menu -->
         <activity
-            android:name="com.open.pxing.activity.m.MLeftMenuPullListActivity"
+            android:name="com.open.mmxzg.activity.m.MLeftMenuPullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_left_menu_list_desp" >
+            android:description="@string/mmxzg_left_menu_list_desp" >
         </activity>
          <!-- pxing slide menu-->
         <activity
-            android:name="com.open.pxing.activity.m.MMainSlideMenuActivity"
+            android:name="com.open.mmxzg.activity.m.MMainSlideMenuActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_slide_menu_desp"
+            android:description="@string/mmxzg_slide_menu_desp"
             android:theme="@style/Theme.PageIndicatorDefaults"
             >
         </activity>
          <!--m搜索条件-->
         <activity
-            android:name="com.open.pxing.activity.m.MSearchEditFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MSearchEditFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_search_desp"
+            android:description="@string/mmxzg_search_desp"
             >
         </activity>
          <!-- pxing 搜索列表 -->
         <activity
-            android:name="com.open.pxing.activity.m.MSearchArticlePullListActivity"
+            android:name="com.open.mmxzg.activity.m.MSearchArticlePullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_search_list_desp" >
+            android:description="@string/mmxzg_search_list_desp" >
         </activity>
          <!-- pxing titlebar -->
         <activity
-            android:name="com.open.pxing.activity.m.MCommonTitleBarActivity"
+            android:name="com.open.mmxzg.activity.m.MCommonTitleBarActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_titlebar_list_desp" >
+            android:description="@string/mmxzg_titlebar_list_desp" >
         </activity>
          <!--m titlebar搜索条件-->
         <activity
-            android:name="com.open.pxing.activity.m.MCommonTitleBarSearchEditFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MCommonTitleBarSearchEditFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_titlebar_search_desp"
+            android:description="@string/mmxzg_titlebar_search_desp"
             >
         </activity>
         <!-- pxing 看图 -->
         <activity
-            android:name="com.open.pxing.activity.m.MImagePullListActivity"
+            android:name="com.open.mmxzg.activity.m.MImagePullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_image_list_desp" >
+            android:description="@string/mmxzg_image_list_desp" >
         </activity>
         <!-- pxing 看图foot -->
         <activity
-            android:name="com.open.pxing.activity.m.MImageFootListActivity"
+            android:name="com.open.mmxzg.activity.m.MImageFootListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_image_foot_desp" >
+            android:description="@string/mmxzg_image_foot_desp" >
         </activity>
         <!-- pxing 看图pager -->
         <activity
-            android:name="com.open.pxing.activity.m.MImagePagerAdapterFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MImagePagerAdapterFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_image_pager_list_desp" >
+            android:description="@string/mmxzg_image_pager_list_desp" >
         </activity>
         <!--pxing Indicator 列表 -->
         <activity
-            android:name="com.open.pxing.activity.m.MMainIndicatorFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MMainIndicatorFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_tab_list_desp"
+            android:description="@string/mmxzg_tab_list_desp"
             android:theme="@style/Theme.PageIndicatorDefaults"  >
         </activity>
         <!-- pxing app slide menu-->
         <activity
-            android:name="com.open.pxing.activity.app.MAppMainSlideMenuActivity"
+            android:name="com.open.mmxzg.activity.app.MAppMainSlideMenuActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_app_slide_menu_desp"
+            android:description="@string/mmxzg_app_slide_menu_desp"
             android:theme="@style/Theme.PageIndicatorDefaults"
             >
         </activity>
          <!--pxing 收藏grid 列表 -->
         <activity
-            android:name="com.open.pxing.activity.app.MCollectionGridFragmentActivity"
+            android:name="com.open.mmxzg.activity.app.MCollectionGridFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_collection_grid_list_desp"
+            android:description="@string/mmxzg_collection_grid_list_desp"
              >
         </activity>
          <!--pxing 浏览历史 列表 -->
         <activity
-            android:name="com.open.pxing.activity.app.MHistoryListGridFragmentActivity"
+            android:name="com.open.mmxzg.activity.app.MHistoryListGridFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_history_grid_list_desp"
+            android:description="@string/mmxzg_history_grid_list_desp"
              >
         </activity>
         <!--pxing 浏览历史横向list 列表 -->
         <activity
-            android:name="com.open.pxing.activity.app.MHistoryHorizontalListFragmentActivity"
+            android:name="com.open.mmxzg.activity.app.MHistoryHorizontalListFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_history_horizontal_list_desp"
+            android:description="@string/mmxzg_history_horizontal_list_desp"
              >
         </activity>
         <!--pxing 浏览历史 list+横向list 列表 -->
         <activity
-            android:name="com.open.pxing.activity.app.MHistoryListHorizontalListFragmentActivity"
+            android:name="com.open.mmxzg.activity.app.MHistoryListHorizontalListFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_history_list_horizontal_list_desp"
+            android:description="@string/mmxzg_history_list_horizontal_list_desp"
              >
         </activity>
         <!-- pxing m首页pager -->
         <activity
-            android:name="com.open.pxing.activity.m.MMainTopPagerFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MMainTopPagerFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_main_top_pager_f_desp" >
+            android:description="@string/mmxzg_main_top_pager_f_desp" >
         </activity>
          <!-- pxing m首页 grid -->
         <activity
-            android:name="com.open.pxing.activity.m.MMainGridFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MMainGridFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_main_grid_f_desp" >
+            android:description="@string/mmxzg_main_grid_f_desp" >
         </activity>
         <!-- pxing m 分类标签 -->
         <activity
-            android:name="com.open.pxing.activity.m.MRandExpendGridFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MRandExpendGridFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_rank_expend_grid_f_desp" >
+            android:description="@string/mmxzg_rank_expend_grid_f_desp" >
         </activity>
         <!-- pxing m 分类标签tag -->
         <activity
-            android:name="com.open.pxing.activity.m.MRandTagListFragmentActivity"
+            android:name="com.open.mmxzg.activity.m.MRandTagListFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_rank_tag_list_f_desp" >
+            android:description="@string/mmxzg_rank_tag_list_f_desp" >
         </activity>
         
         <!-- pxing m qq授权登陆 -->
         <activity
-            android:name="com.open.pxing.activity.m.MQQAuthLoginActivity"
+            android:name="com.open.mmxzg.activity.m.MQQAuthLoginActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_qq_auth_login_desp" >
+            android:description="@string/mmxzg_qq_auth_login_desp" >
         </activity>
         
         <!--pxing pc 性感grid列表 -->
         <activity
-            android:name="com.open.pxing.activity.pc.PCNavGridFragmentActivity"
+            android:name="com.open.mmxzg.activity.pc.PCNavGridFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_pc_nav_grid_list_desp"
+            android:description="@string/mmxzg_pc_nav_grid_list_desp"
              >
         </activity>
         <!-- pxing pc slide menu-->
         <activity
-            android:name="com.open.pxing.activity.pc.PCMainSlideMenuActivity"
+            android:name="com.open.mmxzg.activity.pc.PCMainSlideMenuActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_pc_slide_menu_desp"
+            android:description="@string/mmxzg_pc_slide_menu_desp"
             android:theme="@style/Theme.PageIndicatorDefaults"
             >
         </activity>
         <!--  pxing pc  导航pager -->
         <activity
-            android:name="com.open.pxing.activity.pc.PCFocusViewPagerFragmentActivity"
+            android:name="com.open.mmxzg.activity.pc.PCFocusViewPagerFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_pc_focus_pager_desp" >
+            android:description="@string/mmxzg_pc_focus_pager_desp" >
         </activity>
          <!-- pxing pc看图 -->
         <activity
-            android:name="com.open.pxing.activity.pc.PCImagePullListActivity"
+            android:name="com.open.mmxzg.activity.pc.PCImagePullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_pc_image_list_desp" >
+            android:description="@string/mmxzg_pc_image_list_desp" >
         </activity>
         <!-- pxing pc看图pager -->
         <activity
-            android:name="com.open.pxing.activity.pc.PCImagePagerAdapterFragmentActivity"
+            android:name="com.open.mmxzg.activity.pc.PCImagePagerAdapterFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_pc_image_pager_list_desp" >
+            android:description="@string/mmxzg_pc_image_pager_list_desp" >
         </activity>
         <!-- main weex-->
         <activity
             android:name="com.open.android.weex.WeexMainActivity"
-            android:description="@string/pxing_weex_main_desp" 
+            android:description="@string/mmxzg_weex_main_desp" 
             android:configChanges="keyboard|keyboardHidden|navigation"
             >
         </activity>
         
         <activity
             android:name="com.open.android.weex.WeexNavigatorActivity"
-            android:description="@string/pxing_weex_nav_desp" 
+            android:description="@string/mmxzg_weex_nav_desp" 
             android:configChanges="keyboard|keyboardHidden|navigation"
             >
             <intent-filter>
@@ -416,7 +416,7 @@
         <activity
             android:name="com.open.android.activity.common.CommonALLActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/pxing_all_desp" >
+            android:description="@string/mmxzg_all_desp" >
             <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -21,7 +21,7 @@
             android:id="@+id/id_fragment_pop"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:name="com.open.pxing.fragment.m.MRandTagListAppFragment"
+            android:name="com.open.mmxzg.fragment.m.MRandTagListAppFragment"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="8dp" />
