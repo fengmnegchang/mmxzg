@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="5dp" >
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="280dp"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/text_title"
+        android:visibility="gone"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_img" />
+    
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="280dp"
+        android:id="@+id/draweeview"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/text_title"
+        android:scaleType="fitXY"
+         />
+
+    <TextView
+        android:id="@+id/text_camLiDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/draweeview"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp" />
+
+</RelativeLayout>
