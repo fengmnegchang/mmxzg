@@ -17,6 +17,7 @@ import com.open.android.activity.common.CommonALLActivity;
 import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.application.PXingApplication;
 import com.open.mmxzg.bean.m.PatchBean;
+import com.open.mmxzg.db.UserInfoDBService;
 import com.open.mmxzg.service.PXingMainPagerPushService;
 import com.open.mmxzg.utils.DBMySqlUtils;
 import com.open.mmxzg.utils.DeviceUtils;
@@ -71,21 +72,7 @@ public class SplashActivity extends Activity {
 				// TODO Auto-generated method stub
 				try {
 					Thread.sleep(3000);
-					//插入设备信息
-					String imei = DeviceUtils.getDeviceId(SplashActivity.this);
-					String nettype = NetWorkUtils.getAPNType(SplashActivity.this);
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");       
-					Date curDate = new Date(System.currentTimeMillis());//获取当前时间       
-					String time = formatter.format(curDate);  
-					
-					String query = "select * from userinfo where imei='"+imei+"'";
-					String insert = "insert into userinfo(imei,manufacturer,nettype,time,model) values('"+imei+"','"+Build.MANUFACTURER+"','"+nettype+"','"+time+"','"+Build.MODEL+"')";
-					String update = "update userinfo set manufacturer='"+Build.MANUFACTURER+"',nettype='"+nettype+"',time='"+time+"',model='"+Build.MODEL+"' where imei='"+imei+"'";  
-					if(DBMySqlUtils.query(query)){
-						DBMySqlUtils.update(update);
-					}else{
-						DBMySqlUtils.insert(new String[]{insert});
-					}
+					UserInfoDBService.userinfo(SplashActivity.this);
 					mHandler.sendEmptyMessage(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

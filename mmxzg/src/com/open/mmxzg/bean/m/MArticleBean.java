@@ -44,6 +44,26 @@ public class MArticleBean extends CommonBean {
 	
 	private String tag;
 	private String meta;
+	
+	private String imgcount;
+	private String taghref;
+	
+
+	public String getImgcount() {
+		return imgcount;
+	}
+
+	public void setImgcount(String imgcount) {
+		this.imgcount = imgcount;
+	}
+
+	public String getTaghref() {
+		return taghref;
+	}
+
+	public void setTaghref(String taghref) {
+		this.taghref = taghref;
+	}
 
 	public String getHref() {
 		return href;

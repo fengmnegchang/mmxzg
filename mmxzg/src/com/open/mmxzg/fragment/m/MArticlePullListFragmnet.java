@@ -27,6 +27,7 @@ import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
 import com.open.mmxzg.adapter.m.MArticleListAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
+import com.open.mmxzg.db.ImgContainerDBService;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
 import com.open.mmxzg.utils.DBMySqlUtils;
@@ -99,15 +100,11 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 		MArticleJson mMArticleJson = new MArticleJson();
 		String href = url;
 		if(pageNo>1){
-			if(url.endsWith("/")){
-				href = url+"page/"+pageNo;
-			}else{
-				href = url+"/page/"+pageNo;
-			}
+			href = url+"index_"+pageNo+".html";
 		}
-		String typename = "MArticleJsoupService-parseList-"+pageNo;
+		String typename = "MArticleJsoupService-parseMmxzgList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMArticleJson.setList(MArticleJsoupService.parseList(href, pageNo));
+			mMArticleJson.setList(MArticleJsoupService.parseMmxzgList(href, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();
@@ -120,6 +117,11 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 			    //jdbc
 //			    DBMySqlUtils.query();
 //			    DBMySqlUtils.query(openbean);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				ImgContainerDBService.imgContainer(mMArticleJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

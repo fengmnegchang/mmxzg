@@ -45,7 +45,7 @@ public class PXingWebViewActivity extends CommonWebViewActivity {
 	public void loadUrl() {
 		// TODO Auto-generated method stub
 		if(url==null || url.length()==0){
-			url = UrlUtils.PXING;
+			url = UrlUtils.MMXZG;
 		}
 		webview.loadUrl(url);
 	}
