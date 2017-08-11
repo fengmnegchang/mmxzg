@@ -62,8 +62,8 @@ public class PXingMainPagerPushService extends Service {
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			if(msg.what==1000){
-				MArticleBean bean = (MArticleBean) msg.obj;
-				dialog(bean.getAlt(),bean.getHref());
+//				MArticleBean bean = (MArticleBean) msg.obj;
+//				dialog(bean.getAlt(),bean.getHref());
 			}
 			super.handleMessage(msg);
 		}

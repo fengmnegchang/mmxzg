@@ -59,6 +59,13 @@
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
             </intent-filter>
         </receiver>
+        <!-- mvp new示例 -->
+        <activity
+            android:name="com.open.mmxzg.activity.mvp.NewsListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:description="@string/mmxzg_mvp_news_desp" 
+            />
         <activity
             android:name="com.open.mmxzg.activity.wxapi.WXEntryActivity"
             android:label="@string/app_name"

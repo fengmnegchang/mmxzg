@@ -1,28 +1,22 @@
 package com.open.mmxzg;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.open.android.activity.common.CommonALLActivity;
-import com.open.android.utils.NetWorkUtils;
+import com.open.mmxzg.activity.m.MImagePullListActivity;
 import com.open.mmxzg.application.PXingApplication;
 import com.open.mmxzg.bean.m.PatchBean;
 import com.open.mmxzg.db.UserInfoDBService;
 import com.open.mmxzg.service.PXingMainPagerPushService;
-import com.open.mmxzg.utils.DBMySqlUtils;
 import com.open.mmxzg.utils.DeviceUtils;
 import com.open.mmxzg.utils.ServiceUtils;
-import com.open.mmxzg.R;
 import com.taobao.sophix.SophixManager;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mistatistic.sdk.MiStatInterface;
@@ -55,7 +49,12 @@ public class SplashActivity extends Activity {
 				});
 			}
 		};
-
+		
+		Intent intent = new Intent(this, MImagePullListActivity.class);
+		intent.putExtra("URL", "1112");
+		String uriString = intent.toUri(Intent.URI_INTENT_SCHEME);//该uriString就是Constants.EXTRA_PARAM_INTENT_URI对应的值
+        Log.d("uriString===", uriString);
+		
 		if (!ServiceUtils.isServiceExisted(this, PXingMainPagerPushService.class.getSimpleName())) {
 			ServiceUtils.startPollingService(this, 5, PXingMainPagerPushService.class, PXingMainPagerPushService.ACTION);
 		}
