@@ -50,10 +50,10 @@ public class SplashActivity extends Activity {
 			}
 		};
 		
-		Intent intent = new Intent(this, MImagePullListActivity.class);
-		intent.putExtra("URL", "1112");
-		String uriString = intent.toUri(Intent.URI_INTENT_SCHEME);//该uriString就是Constants.EXTRA_PARAM_INTENT_URI对应的值
-        Log.d("uriString===", uriString);
+//		Intent intent = new Intent(this, MImagePullListActivity.class);
+//		intent.putExtra("URL", "1112");
+//		String uriString = intent.toUri(Intent.URI_INTENT_SCHEME);//该uriString就是Constants.EXTRA_PARAM_INTENT_URI对应的值
+//        Log.d("uriString===", uriString);
 		
 		if (!ServiceUtils.isServiceExisted(this, PXingMainPagerPushService.class.getSimpleName())) {
 			ServiceUtils.startPollingService(this, 5, PXingMainPagerPushService.class, PXingMainPagerPushService.ACTION);
