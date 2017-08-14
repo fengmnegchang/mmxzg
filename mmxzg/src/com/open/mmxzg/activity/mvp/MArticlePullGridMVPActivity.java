@@ -2,35 +2,36 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-7-28下午4:07:10
+ * @createTime:2017-8-14下午5:40:28
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-package com.open.mmxzg.activity.m;
+package com.open.mmxzg.activity.mvp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
-import com.open.mmxzg.fragment.m.MArticlePullGridFragmnet;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
+import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment;
+import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
- * 
+ * mvp
  * @author :fengguangjing
- * @createTime:2017-7-28下午4:07:10
+ * @createTime:2017-8-14下午5:40:28
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullGridActivity extends MCommonTitleBarActivity{
+public class MArticlePullGridMVPActivity extends MCommonTitleBarActivity{
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -55,14 +56,19 @@ public class MArticlePullGridActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MArticlePullGridFragmnet.newInstance(url, true);
+		MArticlePullGridMVPFragment fragment =  MArticlePullGridMVPFragment.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		
+		// Create the presenter
+		new MArticlePullGridPresenterImpl(this, fragment,url);
+//		Fragment fragment = MArticlePullGridMVPFragment.newInstance(url, true);
+//		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
 	}
 
-	public static void startMArticlePullGridActivity(Context context, String url) {
+	public static void startMArticlePullGridMVPActivity(Context context, String url) {
 		Intent intent = new Intent();
 		intent.putExtra("URL", url);
-		intent.setClass(context, MArticlePullGridActivity.class);
+		intent.setClass(context, MArticlePullGridMVPActivity.class);
 		context.startActivity(intent);
 	}
 }

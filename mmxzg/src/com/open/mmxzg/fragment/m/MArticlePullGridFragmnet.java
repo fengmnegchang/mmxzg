@@ -77,15 +77,11 @@ public class MArticlePullGridFragmnet extends CommonPullToRefreshGridFragment<MA
 		MArticleJson mMArticleJson = new MArticleJson();
 		String href = url;
 		if(pageNo>1){
-			if(url.endsWith("/")){
-				href = url+"page/"+pageNo;
-			}else{
-				href = url+"/page/"+pageNo;
-			}
+			href = url+"index_"+pageNo+".html";
 		}
-		String typename = "MArticleJsoupService-parseList-"+pageNo;
+		String typename = "MArticleJsoupService-parseMmxzgList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMArticleJson.setList(MArticleJsoupService.parseList(href, pageNo));
+			mMArticleJson.setList(MArticleJsoupService.parseMmxzgList(href, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();

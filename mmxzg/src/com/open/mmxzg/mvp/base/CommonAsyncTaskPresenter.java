@@ -38,6 +38,7 @@ import com.open.andenginetask.ProgressCallable;
 public class CommonAsyncTaskPresenter<T> implements CallEarliest<T>, Callback<T>, Callable<T>, ProgressCallable<T>, Response.Listener<JSONObject>, Response.ErrorListener {
 	public String url;
 	public int pageNo = 1;
+	public Context mContext;
 	/**
 	 * 封装的asynctask方法，此方法没有进度框.
 	 * 

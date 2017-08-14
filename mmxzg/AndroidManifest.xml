@@ -77,13 +77,21 @@
              android:description="@string/mmxzg_weixin_send_to_wx_desp" 
             />
          <!-- 微信分享 -->
-         <!-- pxing 主列表mvp -->
+         <!-- pxing 主列表mvp grid-->
+         <activity
+            android:name="com.open.mmxzg.activity.mvp.MArticlePullGridMVPActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:theme="@style/AppTheme"
+            android:description="@string/mmxzg_mvp_main_grid_desp" >
+        </activity>
+       <!-- pxing 主列表mvp -->
         <activity
             android:name="com.open.mmxzg.activity.mvp.MArticlePullListMVPActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:theme="@style/AppTheme"
             android:description="@string/mmxzg_mvp_main_list_desp" >
         </activity>
+        <!-- pxing 启动mvp -->
          <activity
             android:name="com.open.mmxzg.activity.mvp.SplashMvpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
