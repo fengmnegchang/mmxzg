@@ -26,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 
 import com.google.common.base.Preconditions;
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.mvp.AddEditTaskActivity;
 import com.open.mmxzg.model.TaskDetailContract;
 
 /**
@@ -78,7 +80,13 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
         mDetailTitle = (TextView) root.findViewById(R.id.task_detail_title);
         mDetailDescription = (TextView) root.findViewById(R.id.task_detail_description);
         mDetailCompleteStatus = (CheckBox) root.findViewById(R.id.task_detail_complete);
-
+        mDetailTitle.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 mPresenter.editTask();
+			}
+		});
         // Set up floating action button
 //        FloatingActionButton fab =
 //                (FloatingActionButton) getActivity().findViewById(R.id.fab_edit_task);
@@ -157,9 +165,9 @@ public class TaskDetailFragment extends Fragment implements TaskDetailContract.V
 
     @Override
     public void showEditTask(@NonNull String taskId) {
-//        Intent intent = new Intent(getContext(), AddEditTaskActivity.class);
-//        intent.putExtra(AddEditTaskFragment.ARGUMENT_EDIT_TASK_ID, taskId);
-//        startActivityForResult(intent, REQUEST_EDIT_TASK);
+        Intent intent = new Intent(getContext(), AddEditTaskActivity.class);
+        intent.putExtra(AddEditTaskFragment.ARGUMENT_EDIT_TASK_ID, taskId);
+        startActivityForResult(intent, REQUEST_EDIT_TASK);
     }
 
     @Override

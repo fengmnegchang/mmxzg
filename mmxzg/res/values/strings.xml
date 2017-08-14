@@ -44,6 +44,7 @@
 	<string name="mmxzg_mvp_news_desp">mmxzg mvp news</string>
 	<string name="mmxzg_mvp_task_detail_desp">mmxzg mvp taskdetail</string>
 	<string name="mmxzg_mvp_add_edit_task_desp">mmxzg mvp addedit task</string>
+	<string name="mmxzg_mvp_task_list_desp">mmxzg mvp task list</string>
 	
 	<string name="ok">确认</string>
     <string name="cancel">取消</string>
@@ -249,4 +250,25 @@
     <string name="successfully_saved_task_message">TO-DO saved</string>
     <string name="add_task">New TO-DO</string>
     <string name="edit_task">Edit TO-DO</string>
+     <string name="loading_tasks_error">Error while loading tasks</string>
+    <string name="completed_tasks_cleared">Completed tasks cleared</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_clear">Clear completed</string>
+    <string name="menu_delete_task">Delete task</string>
+    <string name="label_all">All TO-DOs</string>
+    <string name="label_active">Active TO-DOs</string>
+    <string name="label_completed">Completed TO-DOs</string>
+    <string name="no_tasks_all">You have no TO-DOs!</string>
+    <string name="no_tasks_active">You have no active TO-DOs!</string>
+    <string name="no_tasks_completed">You have no completed TO-DOs!</string>
+    <string name="no_tasks_add">Add a TO-DO item +</string>
+    <string name="refresh">Refresh</string>
+     <string-array name="list_tasks_array">
+        <item>@string/nav_all</item>
+        <item>@string/nav_active</item>
+        <item>@string/nav_completed</item>
+    </string-array>
+    <string name="nav_all">All</string>
+    <string name="nav_active">Active</string>
+    <string name="nav_completed">Completed</string>
 </resources>
