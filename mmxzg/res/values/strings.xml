@@ -43,6 +43,7 @@
 	<string name="mmxzg_weixin_send_to_wx_desp">mmxzg sendtowx</string>
 	<string name="mmxzg_mvp_news_desp">mmxzg mvp news</string>
 	<string name="mmxzg_mvp_task_detail_desp">mmxzg mvp taskdetail</string>
+	<string name="mmxzg_mvp_add_edit_task_desp">mmxzg mvp addedit task</string>
 	
 	<string name="ok">确认</string>
     <string name="cancel">取消</string>
@@ -242,4 +243,10 @@
      <string name="task_marked_complete">Task marked complete</string>
     <string name="task_marked_active">Task marked active</string>
     <string name="no_data">No data</string>
+    <string name="title_hint">Title</string>
+    <string name="description_hint">Enter your TO-DO here.</string>
+    <string name="empty_task_message">TO DOs cannot be empty</string>
+    <string name="successfully_saved_task_message">TO-DO saved</string>
+    <string name="add_task">New TO-DO</string>
+    <string name="edit_task">Edit TO-DO</string>
 </resources>

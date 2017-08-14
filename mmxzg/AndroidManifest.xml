@@ -85,6 +85,12 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:description="@string/mmxzg_mvp_task_detail_desp" 
             />
+        <activity
+            android:name="com.open.mmxzg.activity.mvp.AddEditTaskActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:description="@string/mmxzg_mvp_add_edit_task_desp" 
+            />
         <!-- mvp new示例 
         <activity
             android:name="com.open.mmxzg.activity.mvp.NewsListActivity"
