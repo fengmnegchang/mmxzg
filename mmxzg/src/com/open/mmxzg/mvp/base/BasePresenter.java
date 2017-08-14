@@ -18,7 +18,5 @@ package com.open.mmxzg.mvp.base;
 
 
 public interface BasePresenter{
-
     void start();
-
 }

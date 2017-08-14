@@ -81,7 +81,7 @@
         <activity
             android:name="com.open.mmxzg.activity.mvp.MArticlePullListMVPActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/AppTheme"
             android:description="@string/mmxzg_mvp_main_list_desp" >
         </activity>
          <activity

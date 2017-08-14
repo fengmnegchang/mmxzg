@@ -11,10 +11,12 @@
  */
 package com.open.mmxzg.activity.mvp;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
 import com.open.mmxzg.fragment.mvp.MArticlePullListMVPFragment;
 import com.open.mmxzg.presenter.MArticlePullListPresenter;
 import com.open.mmxzg.utils.ActivityUtils;
@@ -31,26 +33,70 @@ import com.open.mmxzg.utils.UrlUtils;
  * @description:
  ***************************************************************************************************************************************************************************** 
  */
-public class MArticlePullListMVPActivity extends AppCompatActivity {
+public class MArticlePullListMVPActivity extends MCommonTitleBarActivity {
+//	@Override
+//	public void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+////		setContentView(R.layout.taskdetail_act);
+//
+//		MArticlePullListMVPFragment mMArticlePullListMVPFragmnet = (MArticlePullListMVPFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+//		if (mMArticlePullListMVPFragmnet == null) {
+//			mMArticlePullListMVPFragmnet = MArticlePullListMVPFragment.newInstance(true);
+//			ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mMArticlePullListMVPFragmnet, R.id.contentFrame);
+//		}
+//
+//		// Create the presenter
+//		new MArticlePullListPresenter(this, mMArticlePullListMVPFragmnet,UrlUtils.MMXZG);
+//		 
+//	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.open.enrz.activity.CommonFragmentActivity#initValue()
+	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.taskdetail_act);
-
-		MArticlePullListMVPFragment mMArticlePullListMVPFragmnet = (MArticlePullListMVPFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
-		if (mMArticlePullListMVPFragmnet == null) {
-			mMArticlePullListMVPFragmnet = MArticlePullListMVPFragment.newInstance(true);
-			ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mMArticlePullListMVPFragmnet, R.id.contentFrame);
+	protected void initValue() {
+		// TODO Auto-generated method stub
+//		super.initValue();
+		if (getIntent().getStringExtra("URL") != null) {
+			url = getIntent().getStringExtra("URL");
+		} else {
+			url = UrlUtils.MMXZG;
 		}
-
-		// Create the presenter
-		new MArticlePullListPresenter(this, mMArticlePullListMVPFragmnet,UrlUtils.MMXZG);
-		 
+		addfragment();
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.open.android.activity.CommonFragmentActivity#addfragment()
+	 */
 	@Override
-	public boolean onSupportNavigateUp() {
-		onBackPressed();
-		return true;
+	public void addfragment() {
+		// TODO Auto-generated method stub
+//		MArticlePullListMVPFragment mMArticlePullListMVPFragmnet = (MArticlePullListMVPFragment) getSupportFragmentManager().findFragmentById(R.id.layout_content);
+//		if (mMArticlePullListMVPFragmnet == null) {
+//			mMArticlePullListMVPFragmnet = MArticlePullListMVPFragment.newInstance(true);
+//			ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mMArticlePullListMVPFragmnet, R.id.layout_content);
+//		}
+		
+		MArticlePullListMVPFragment fragment =  MArticlePullListMVPFragment.newInstance(true);
+		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		
+		// Create the presenter
+		new MArticlePullListPresenter(this, fragment,url);
 	}
+
+	public static void startMArticlePullListMVPActivity(Context context, String url) {
+		Intent intent = new Intent();
+		intent.putExtra("URL", url);
+		intent.setClass(context, MArticlePullListMVPActivity.class);
+		context.startActivity(intent);
+	}
+
+//	@Override
+//	public boolean onSupportNavigateUp() {
+//		onBackPressed();
+//		return true;
+//	}
 }

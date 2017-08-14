@@ -30,9 +30,9 @@ public interface MArticlePullListContract {
 	 * view层 负责view变化展示
 	 */
 	interface View<T> extends BaseView<Presenter> {
-		 void bindEvent();
-		 void initValues();
-		 void onCallback(T result);
+		void onCallback(T result);
+		void bindEvent();
+		void initValues();
 	}
 	
 	/**
