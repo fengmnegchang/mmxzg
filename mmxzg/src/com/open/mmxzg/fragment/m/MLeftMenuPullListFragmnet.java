@@ -27,10 +27,7 @@ import com.open.mmxzg.PXingWebViewActivity;
 import com.open.mmxzg.activity.m.MArticlePullListActivity;
 import com.open.mmxzg.adapter.m.MSlideMenuAdapter;
 import com.open.mmxzg.bean.m.MSlideMenuBean;
-import com.open.mmxzg.db.NavMenuDBService;
-import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.json.m.MSlideMenuJson;
-import com.open.mmxzg.jsoup.m.MArticleJsoupService;
 import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
 
 /**
@@ -93,7 +90,7 @@ public class MLeftMenuPullListFragmnet extends CommonPullToRefreshListFragment<M
 				e.printStackTrace();
 			}
 			try {
-				NavMenuDBService.navmenu(mMSlideMenuJson);
+//				NavMenuDBService.navmenu(mMSlideMenuJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

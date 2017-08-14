@@ -51,21 +51,14 @@
 	      </intent-filter>   
 	   </receiver>
         
-        <!-- 微信分享  -->
+        <!-- 微信分享 
          <receiver
             android:name="com.open.mmxzg.activity.wxapi.AppRegister"
             android:permission="com.tencent.mm.plugin.permission.SEND" >
             <intent-filter>
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
             </intent-filter>
-        </receiver>
-        <!-- mvp new示例 -->
-        <activity
-            android:name="com.open.mmxzg.activity.mvp.NewsListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:description="@string/mmxzg_mvp_news_desp" 
-            />
+        </receiver> 
         <activity
             android:name="com.open.mmxzg.activity.wxapi.WXEntryActivity"
             android:label="@string/app_name"
@@ -83,8 +76,24 @@
             android:label="@string/app_name"
              android:description="@string/mmxzg_weixin_send_to_wx_desp" 
             />
-        <!-- 微信分享 -->
-        <!-- qq授权登陆 -->
+       
+        -->
+         <!-- 微信分享 -->
+        <activity
+            android:name="com.open.mmxzg.activity.mvp.TaskDetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:description="@string/mmxzg_mvp_task_detail_desp" 
+            />
+        <!-- mvp new示例 
+        <activity
+            android:name="com.open.mmxzg.activity.mvp.NewsListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:description="@string/mmxzg_mvp_news_desp" 
+            />-->
+        
+        <!-- qq授权登陆 
         <activity
             android:name="com.open.mmxzg.activity.qq.QQShareActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -106,7 +115,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="101421230" />
- 				<!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
          <activity
@@ -115,8 +123,10 @@
             android:screenOrientation="behind"
             android:description="@string/title_activity_assist"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+         -->
+         <!-- 100380359 100381104 222222 -->
         <!-- qq授权登陆 -->
-        <!-- 小米推送 -->
+        <!-- 小米推送 
          <service
             android:name="com.xiaomi.push.service.XMJobService"
             android:enabled="true"
@@ -166,7 +176,7 @@
             <intent-filter>
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
         <!-- 小米推送 -->
         <!-- hotfix -->
         <meta-data

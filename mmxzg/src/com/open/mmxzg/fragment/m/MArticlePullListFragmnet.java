@@ -27,11 +27,8 @@ import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
 import com.open.mmxzg.adapter.m.MArticleListAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
-import com.open.mmxzg.db.ImgContainerDBService;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
-import com.open.mmxzg.utils.DBMySqlUtils;
-import com.xiaomi.mistatistic.sdk.MiStatInterface;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -62,7 +59,7 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MiStatInterface.recordPageEnd();
+//		MiStatInterface.recordPageEnd();
 	}
 
 	/* (non-Javadoc)
@@ -72,7 +69,7 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MiStatInterface.recordPageStart(getActivity(), "marticle page");
+//		MiStatInterface.recordPageStart(getActivity(), "marticle page");
 	}
 
 	/*
@@ -121,7 +118,7 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 				e.printStackTrace();
 			}
 			try {
-				ImgContainerDBService.imgContainer(mMArticleJson);
+//				ImgContainerDBService.imgContainer(mMArticleJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -276,7 +273,7 @@ public class MArticlePullListFragmnet extends CommonPullToRefreshListFragment<MA
 //			}
 			MImagePullListActivity.startMImagePullListActivity(getActivity(),
 					bean.getHref());
-			MiStatInterface.recordCountEvent("美图", "查看详图");
+//			MiStatInterface.recordCountEvent("美图", "查看详图");
 		}
 	}
 

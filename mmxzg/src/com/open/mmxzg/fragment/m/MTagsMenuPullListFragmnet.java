@@ -27,7 +27,6 @@ import com.open.mmxzg.PXingWebViewActivity;
 import com.open.mmxzg.activity.m.MArticlePullListActivity;
 import com.open.mmxzg.adapter.m.MSlideMenuAdapter;
 import com.open.mmxzg.bean.m.MSlideMenuBean;
-import com.open.mmxzg.db.TagsContainerDBService;
 import com.open.mmxzg.json.m.MSlideMenuJson;
 import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
 
@@ -91,7 +90,7 @@ public class MTagsMenuPullListFragmnet extends CommonPullToRefreshListFragment<M
 				e.printStackTrace();
 			}
 			try {
-				TagsContainerDBService.tagsContainer(mMSlideMenuJson);
+//				TagsContainerDBService.tagsContainer(mMSlideMenuJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

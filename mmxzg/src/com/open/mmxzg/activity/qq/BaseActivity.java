@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.open.mmxzg.auth.Util;
 import com.open.mmxzg.R;
-import com.tencent.tauth.Tencent;
 
 public class BaseActivity extends Activity{
 

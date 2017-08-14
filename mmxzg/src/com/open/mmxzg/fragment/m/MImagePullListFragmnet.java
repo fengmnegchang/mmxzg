@@ -35,7 +35,6 @@ import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
 import com.open.mmxzg.R;
-import com.xiaomi.mistatistic.sdk.MiStatInterface;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -163,7 +162,7 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 			mMArticleJson.setList(list);
 			mMArticleJson.setCurrentPosition((int)id);
 			if(list.get(0).getHref().contains(".mp4")){
-				MiStatInterface.recordCountEvent("视频", "播放视频");
+//				MiStatInterface.recordCountEvent("视频", "播放视频");
 				MVideoViewActivity.startMVideoViewActivity(getActivity(), list.get(0).getHref());
 			}else{
 				MImagePagerAdapterFragmentActivity.startMImagePagerAdapterFragmentActivity(getActivity(),list.get(0).getHref(), mMArticleJson);
