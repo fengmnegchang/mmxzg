@@ -13,10 +13,13 @@ import com.open.android.activity.common.CommonALLActivity;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
 import com.open.mmxzg.application.PXingApplication;
 import com.open.mmxzg.bean.m.PatchBean;
+import com.open.mmxzg.db.UserInfoDBService;
 import com.open.mmxzg.service.PXingMainPagerPushService;
 import com.open.mmxzg.utils.DeviceUtils;
 import com.open.mmxzg.utils.ServiceUtils;
 import com.taobao.sophix.SophixManager;
+import com.xiaomi.mipush.sdk.MiPushClient;
+import com.xiaomi.mistatistic.sdk.MiStatInterface;
 
 public class SplashActivity extends Activity {
 	private static final int SHOW_TIME_MIN = 3000;// 最小显示时间
@@ -32,9 +35,9 @@ public class SplashActivity extends Activity {
 		// if (Build.VERSION.SDK_INT >= 23) {
 		// requestExternalStoragePermission();
 		// }
-//		MiPushClient.setAlias(SplashActivity.this, DeviceUtils.getDeviceId(this), null);
+		MiPushClient.setAlias(SplashActivity.this, DeviceUtils.getDeviceId(this), null);
 		Log.d("SplashActivity", "Alias===" + DeviceUtils.getDeviceId(this));
-//		MiPushClient.resumePush(SplashActivity.this, null);
+		MiPushClient.resumePush(SplashActivity.this, null);
 		PXingApplication.msgDisplayListener = new PXingApplication.MsgDisplayListener() {
 			@Override
 			public void handle(final String msg) {
@@ -68,7 +71,7 @@ public class SplashActivity extends Activity {
 				// TODO Auto-generated method stub
 				try {
 					Thread.sleep(3000);
-//					UserInfoDBService.userinfo(SplashActivity.this);
+					UserInfoDBService.userinfo(SplashActivity.this);
 					mHandler.sendEmptyMessage(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -173,7 +176,7 @@ public class SplashActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-//		MiStatInterface.recordPageStart(SplashActivity.this, "splash page");
+		MiStatInterface.recordPageStart(SplashActivity.this, "splash page");
 	}
 
 	/*
@@ -185,7 +188,7 @@ public class SplashActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-//		MiStatInterface.recordPageEnd();
+		MiStatInterface.recordPageEnd();
 	}
 
 }

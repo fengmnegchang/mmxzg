@@ -51,7 +51,7 @@
 	      </intent-filter>   
 	   </receiver>
         
-        <!-- 微信分享 
+        <!-- 微信分享 -->
          <receiver
             android:name="com.open.mmxzg.activity.wxapi.AppRegister"
             android:permission="com.tencent.mm.plugin.permission.SEND" >
@@ -77,7 +77,7 @@
              android:description="@string/mmxzg_weixin_send_to_wx_desp" 
             />
        
-        -->
+        
          <!-- 微信分享 -->
         <activity
             android:name="com.open.mmxzg.activity.mvp.TaskDetailActivity"
@@ -93,7 +93,7 @@
             android:description="@string/mmxzg_mvp_news_desp" 
             />-->
         
-        <!-- qq授权登陆 
+        <!-- qq授权登陆  -->
         <activity
             android:name="com.open.mmxzg.activity.qq.QQShareActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -123,10 +123,10 @@
             android:screenOrientation="behind"
             android:description="@string/title_activity_assist"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-         -->
+        
          <!-- 100380359 100381104 222222 -->
         <!-- qq授权登陆 -->
-        <!-- 小米推送 
+        <!-- 小米推送 -->
          <service
             android:name="com.xiaomi.push.service.XMJobService"
             android:enabled="true"
@@ -176,7 +176,7 @@
             <intent-filter>
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
-        </receiver>-->
+        </receiver>
         <!-- 小米推送 -->
         <!-- hotfix -->
         <meta-data
