@@ -11,6 +11,8 @@
  */
 package com.open.mmxzg.view;
 
+import com.open.android.mvp.view.CommonView;
+
 /**
  *****************************************************************************************************************************************************************************
  * 
@@ -22,6 +24,6 @@ package com.open.mmxzg.view;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public interface MArticlePullListView <T,P> extends CommonView<T,P>{
+public interface MArticlePullListView<T,P> extends CommonView<T,P>{
 
 }

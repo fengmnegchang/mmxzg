@@ -11,7 +11,7 @@
  */
 package com.open.mmxzg.presenter;
 
-import com.open.mmxzg.mvp.base.CommonPresenter;
+import com.open.android.mvp.presenter.CommonPresenter;
 
 /**
  *****************************************************************************************************************************************************************************

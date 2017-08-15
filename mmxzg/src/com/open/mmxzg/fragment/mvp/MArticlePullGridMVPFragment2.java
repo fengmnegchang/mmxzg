@@ -16,10 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.open.android.fragment.common.CommonPullToRefreshGridMVPFragment;
 import com.open.mmxzg.adapter.m.MArticleGridAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.presenter.MArticlePullGridPresenter;
+import com.open.mmxzg.view.MArticlePullGridView;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -32,7 +34,8 @@ import com.open.mmxzg.presenter.MArticlePullGridPresenter;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullGridMVPFragment2 extends CommonPullToRefreshGridMVPFragment<MArticleBean,MArticleJson,MArticlePullGridPresenter>{
+public class MArticlePullGridMVPFragment2 extends CommonPullToRefreshGridMVPFragment<MArticleBean,MArticleJson,MArticlePullGridPresenter>
+implements MArticlePullGridView<MArticleJson,MArticlePullGridPresenter>{
 	public MArticleGridAdapter mMArticleGridAdapter;
 
 	public static MArticlePullGridMVPFragment2 newInstance(boolean isVisibleToUser) {

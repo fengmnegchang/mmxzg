@@ -16,8 +16,8 @@
 
 package com.open.mmxzg.model;
 
-import com.open.mmxzg.mvp.base.BasePresenter;
-import com.open.mmxzg.mvp.base.BaseView;
+import com.open.android.mvp.base.BasePresenter;
+import com.open.android.mvp.base.BaseView;
 
 /**
  * This specifies the contract between the view and the presenter.

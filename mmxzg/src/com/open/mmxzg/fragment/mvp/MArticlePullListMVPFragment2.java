@@ -16,10 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.open.android.fragment.common.CommonPullToRefreashListMVPFragment;
 import com.open.mmxzg.adapter.m.MArticleListAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.presenter.MArticlePullListPresenter2;
+import com.open.mmxzg.view.MArticlePullListView;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -32,7 +34,8 @@ import com.open.mmxzg.presenter.MArticlePullListPresenter2;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullListMVPFragment2 extends CommonPullToRefreashListMVPFragment<MArticleBean,MArticleJson,MArticlePullListPresenter2>{
+public class MArticlePullListMVPFragment2 extends CommonPullToRefreashListMVPFragment<MArticleBean,MArticleJson,MArticlePullListPresenter2>
+implements MArticlePullListView<MArticleJson,MArticlePullListPresenter2>{
 	public MArticleListAdapter mMArticleListAdapter;
 
 	public static MArticlePullListMVPFragment2 newInstance(boolean isVisibleToUser) {

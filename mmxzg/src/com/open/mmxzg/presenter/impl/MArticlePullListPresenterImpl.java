@@ -21,10 +21,10 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
+import com.open.android.mvp.base.CommonAsyncTaskPresenter;
 import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
-import com.open.mmxzg.mvp.base.CommonAsyncTaskPresenter;
 import com.open.mmxzg.presenter.MArticlePullListPresenter2;
 import com.open.mmxzg.view.MArticlePullListView;
 

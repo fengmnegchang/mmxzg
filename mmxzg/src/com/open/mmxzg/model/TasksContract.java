@@ -20,9 +20,9 @@ import java.util.List;
 
 import android.support.annotation.NonNull;
 
+import com.open.android.mvp.base.BasePresenter;
+import com.open.android.mvp.base.BaseView;
 import com.open.mmxzg.bean.mvp.Task;
-import com.open.mmxzg.mvp.base.BasePresenter;
-import com.open.mmxzg.mvp.base.BaseView;
 
 /**
  * This specifies the contract between the view and the presenter.
