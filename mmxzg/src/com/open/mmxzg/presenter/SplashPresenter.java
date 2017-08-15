@@ -12,16 +12,11 @@
 package com.open.mmxzg.presenter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.open.android.activity.common.CommonALLActivity;
-import com.open.mmxzg.SplashActivity;
-import com.open.mmxzg.application.PXingApplication;
 import com.open.mmxzg.db.UserInfoDBService;
 import com.open.mmxzg.model.SplashContract;
 import com.open.mmxzg.service.PXingMainPagerPushService;

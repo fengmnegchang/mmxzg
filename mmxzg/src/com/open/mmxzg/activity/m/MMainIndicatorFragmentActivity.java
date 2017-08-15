@@ -43,7 +43,7 @@ public class MMainIndicatorFragmentActivity extends MCommonTitleBarActivity{
 		if (getIntent().getStringExtra("URL") != null) {
 			url = getIntent().getStringExtra("URL");
 		} else {
-			url = UrlUtils.PXING_NEW;
+			url = UrlUtils.MMXZG;
 		}
 		addfragment();
 	}

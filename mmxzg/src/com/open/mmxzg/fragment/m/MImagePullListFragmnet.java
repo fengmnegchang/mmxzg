@@ -84,7 +84,7 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 		
 		mMImageListAdapter = new MImageListAdapter(getActivity(), list);
 		mPullToRefreshListView.setAdapter(mMImageListAdapter);
-		mPullToRefreshListView.setMode(Mode.PULL_FROM_START);
+		mPullToRefreshListView.setMode(Mode.BOTH);
 	}
 
 	/*
@@ -97,9 +97,9 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 	public MArticleJson call() throws Exception {
 		// TODO Auto-generated method stub
 		MArticleJson mMArticleJson;
-		String typename = "MArticleJsoupService-parsePXImagePagerList-"+position;
+		String typename = "MArticleJsoupService-parseMMXZGImagePagerList-"+position;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			 mMArticleJson = MArticleJsoupService.parsePXImagePagerList(url,position);
+			 mMArticleJson = MArticleJsoupService.parseMMXZGImagePagerList(url,position);
 			try {
 				//数据存储
 				Gson gson = new Gson();

@@ -405,6 +405,85 @@ public class MArticleJsoupService extends CommonService {
 		return list;
 	}
 	
+	public static List<MArticleBean> parseMMXZGMImageFootList(String href, int pageNo) {
+		List<MArticleBean> list = new ArrayList<MArticleBean>();
+		try {
+			// href = makeURL(href, new HashMap<String, Object>() {
+			// {
+			// }
+			// });
+		    
+			Document doc;
+			doc = Jsoup.connect(href)
+					.userAgent(UrlUtils.userAgent)
+//					.header("Host","www.pximg.com")
+//					.cookie("Cookie", "UM_distinctid=15d4f9ce60a4eb-050c6be969bcef-35414878-1aeaa0-15d4f9ce60b3bc; CNZZDATA1260136144=1243021942-1500278440-https%253A%252F%252Fwww.baidu.com%252F%7C1501116123; Hm_lvt_21e82dda40c2143d1c3187f1c80935ec=1500279272,1500968826,1501061381; Hm_lpvt_21e82dda40c2143d1c3187f1c80935ec=1501119552")
+					.timeout(10000).get();
+			Log.i(TAG, "url = " + href);
+
+//			Document doc = Jsoup.connect(href).userAgent(UrlUtils.userAgent).timeout(10000).get();
+			// System.out.println(doc.toString());
+			try {
+				 Element globalnavElement = doc.select("div.mayBeLove").first();
+				Elements moduleElements = globalnavElement.select("div.border-img-box");
+				if (moduleElements != null && moduleElements.size() > 0) {
+					for (int i = 0; i < moduleElements.size(); i++) {
+							MArticleBean sbean = new MArticleBean();
+							try {
+								try {
+									Element aElement = moduleElements.get(i).select("a").first();
+									if (aElement != null) {
+										String hrefa = UrlUtils.MMXZG_COM+aElement.attr("href");
+										Log.i(TAG, "i==" + i + ";hrefa==" + hrefa);
+										sbean.setHref(hrefa);
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+
+								try {
+									Element imgElement = moduleElements.get(i).select("img").first();
+									if (imgElement != null) {
+										String src = UrlUtils.MMXZG_COM+imgElement.attr("src");
+										Log.i(TAG, "i==" + i + ";src==" + src);
+										sbean.setSrc(src);
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+
+								try {
+									Element imgElement = moduleElements.get(i).select("img").first();
+									if (imgElement != null) {
+										String alt = imgElement.attr("alt");
+										if(alt.contains("%u")){
+											alt = EscapeUnescapeUtils.unescape(alt);
+										}
+										Log.i(TAG, "i==" + i + ";alt==" + alt);
+										sbean.setAlt(alt);
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+ 
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+
+							list.add(sbean);
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public static List<MArticleBean> parseSexNovelList(String href, int pageNo) {
 		List<MArticleBean> list = new ArrayList<MArticleBean>();
 		try {
@@ -695,51 +774,18 @@ public class MArticleJsoupService extends CommonService {
 //			Document doc = Jsoup.connect(href).userAgent(UrlUtils.userAgent).timeout(10000).get();
 			// System.out.println(doc.toString());
 			try {
-				/**
-				 * <article class="post">
-         <div class="post-header">
-            <h2 class="mm-title">大波女神悦悦艺术写真尺度大惑力强</h2>
-            <div class="post-data"><span class="post-meta">2017-03-06 21:48:39</span></div>
-         </div>
-         <div class="post-content single-post-content"><
-         a href="2847_2.html"><img alt="大波女神悦悦艺术写真尺度大惑力强(图1)"
-          src="http://img2.mm131.com:55888/pic/2847/1.jpg" />
-         </a></div>
-         
-		 <div class="fenye"><a href="2848.html" class="rw">上一篇</a><span class="rw">1/58页</span><a href="2847_2.html">下一张</a></div>
-         <div class="mmss"><script type="text/javascript" src="http://img1.mm798.net/mixiu/js/ms.js"></script></div>
-         <div class="post-footer single-post-footer">
-            <span class="post-meta">分类：<a href="http://m.mm131.com/xinggan/">性感美女</a></span>
-            <span class="post-tag">标签：<a href="http://m.mm131.com/tag/%B4%F3%B2%A8">大波</a><a href="http://m.mm131.com/tag/%D4%C3%D4%C3">悦悦</a><a href="http://m.mm131.com/tag/%D2%D5%CA%F5%D0%B4%D5%E6">艺术写真</a></span>
-         </div>
-		 <div class="jcdog"><script type="text/javascript">show_down();</script></div>
-      </article>
-
-				 */
 				// Element globalnavElement =
 				// doc.select("div.adFocusHtml").first();
-				Elements moduleElements = doc.select("article.post");
+				Elements moduleElements = doc.select("div.srcPic");
 				if (moduleElements != null && moduleElements.size() > 0) {
 					for (int i = 0; i < moduleElements.size(); i++) {
-						Element pElement = moduleElements.get(i);
-						 
 							MArticleBean sbean = new MArticleBean();
 							try {
 								try {
-									Element aElement = moduleElements.get(i).select("a").first();
-									if (aElement != null) {
-										String hrefa = aElement.attr("href");
-										if(!hrefa.contains(UrlUtils.MM_M)){
-											hrefa = href;
-										}
-										Log.i(TAG, "i==" + i + ";hrefa==" + hrefa);
-										sbean.setHref(hrefa);
-									}
+									sbean.setHref(href);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-
-								 
 
 								try {
 									Element imgElement = moduleElements.get(i).select("img").first();
@@ -758,45 +804,14 @@ public class MArticleJsoupService extends CommonService {
 								try {
 									Element imgElement = moduleElements.get(i).select("img").first();
 									if (imgElement != null) {
-										String dataimg = imgElement.attr("src");
+										String dataimg = UrlUtils.MMXZG_COM+imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";dataimg==" + dataimg);
 										sbean.setDataimg(dataimg);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-
-								try {
-									Element imgElement = moduleElements.get(i).select("span.post-meta").first();
-									if (imgElement != null) {
-										String postmeta = imgElement.text();
-										Log.i(TAG, "i==" + i + ";postmeta==" + postmeta);
-										sbean.setPostmeta(postmeta);
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-
-								
-								/**
-								 * <div class="post-footer single-post-footer">
-            <span class="post-meta">分类：<a href="http://m.mm131.com/xinggan/">性感美女</a></span>
-            <span class="post-tag">标签：<a href="http://m.mm131.com/tag/%B4%F3%B2%A8">大波</a><a href="http://m.mm131.com/tag/%D4%C3%D4%C3">悦悦</a><a href="http://m.mm131.com/tag/%D2%D5%CA%F5%D0%B4%D5%E6">艺术写真</a></span>
-         </div>
-								 */
-								
-								try {
-									Element footerElement =  doc.select("div.single-post-footer").first();
-									Element metaElement = footerElement.select("span.post-meta").first();
-									sbean.setMeta(metaElement.toString());
-									
-									Element tagElement = footerElement.select("span.post-tag").first();
-									sbean.setTag(tagElement.toString());
-									
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								
+								 
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -981,41 +996,22 @@ public class MArticleJsoupService extends CommonService {
 			// System.out.println(doc.toString());
 			try {
 				/**
-				 * <article class="post">
-         <div class="post-header">
-            <h2 class="mm-title">大波女神悦悦艺术写真尺度大惑力强</h2>
-            <div class="post-data"><span class="post-meta">2017-03-06 21:48:39</span></div>
-         </div>
-         <div class="post-content single-post-content"><
-         a href="2847_2.html"><img alt="大波女神悦悦艺术写真尺度大惑力强(图1)"
-          src="http://img2.mm131.com:55888/pic/2847/1.jpg" />
-         </a></div>
-         
-		 <div class="fenye">
-		 <a href="2848.html" class="rw">上一篇</a>
-		 <span class="rw">1/58页</span>
-		 <a href="2847_2.html">下一张</a>
-		 </div>
-		 
-         <div class="mmss"><script type="text/javascript" src="http://img1.mm798.net/mixiu/js/ms.js"></script></div>
-         <div class="post-footer single-post-footer">
-            <span class="post-meta">分类：<a href="http://m.mm131.com/xinggan/">性感美女</a></span>
-            <span class="post-tag">标签：<a href="http://m.mm131.com/tag/%B4%F3%B2%A8">大波</a><a href="http://m.mm131.com/tag/%D4%C3%D4%C3">悦悦</a><a href="http://m.mm131.com/tag/%D2%D5%CA%F5%D0%B4%D5%E6">艺术写真</a></span>
-         </div>
-		 <div class="jcdog"><script type="text/javascript">show_down();</script></div>
-      </article>
-
-				 */
-				/**
 				 * 获取分页信息
 				 */
 				try {
-					Element globalnavElement = doc.select("div.fenye").first();
+					Element globalnavElement = doc.select("div.pic-title").first();
 					if(globalnavElement!=null){
-						Element pElement = globalnavElement.select("span.rw").first();
-						String pager = pElement.text().replace("页", "");
-						currentposition = Integer.parseInt(pager.split("/")[0]);
-						int tposition = Integer.parseInt(pager.split("/")[1]);
+						//撼人的胸围 娃娃脸女生Barbie可儿[18P]
+						//[尤果网] 不知火舞cos美女赵小米Kitty萌照 第507期[36P]
+						Element pElement = globalnavElement.select("h2").first();
+						String maxPage = pElement.text();
+						currentposition = pageNo;
+//						Element picElement = doc.select("div.srcPic").first();
+//						String title =  picElement.select("img").first().attr("alt");
+						String s1 = maxPage.split("P]")[0];
+						int s2 = s1.lastIndexOf("[")+1;
+						String tpositionstr = s1.substring(s2);
+						int tposition = Integer.parseInt(tpositionstr);
 						mMArticleJson.setCurrentPosition(currentposition);
 						mMArticleJson.setMaxPage(tposition);
 						for(int i=0;i<tposition;i++){
@@ -1024,35 +1020,21 @@ public class MArticleJsoupService extends CommonService {
 							list.add(sbean);
 						}
 					}
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
 				// Element globalnavElement =
 				// doc.select("div.adFocusHtml").first();
-				Elements moduleElements = doc.select("article.post");
+				Elements moduleElements = doc.select("div.srcPic");
 				if (moduleElements != null && moduleElements.size() > 0) {
 					for (int i = 0; i < moduleElements.size(); i++) {
-						Element pElement = moduleElements.get(i);
-						 
 							MArticleBean sbean = new MArticleBean();
 							try {
 								try {
-									Element aElement = moduleElements.get(i).select("a").first();
-									if (aElement != null) {
-										String hrefa = aElement.attr("href");
-										if(!hrefa.contains(UrlUtils.MM_M)){
-											hrefa = href;
-										}
-										Log.i(TAG, "i==" + i + ";hrefa==" + hrefa);
-										sbean.setHref(hrefa);
-									}
+									sbean.setHref(href);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-
-								 
 
 								try {
 									Element imgElement = moduleElements.get(i).select("img").first();
@@ -1071,20 +1053,9 @@ public class MArticleJsoupService extends CommonService {
 								try {
 									Element imgElement = moduleElements.get(i).select("img").first();
 									if (imgElement != null) {
-										String dataimg = imgElement.attr("src");
+										String dataimg = UrlUtils.MMXZG_COM+imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";dataimg==" + dataimg);
 										sbean.setDataimg(dataimg);
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-
-								try {
-									Element imgElement = moduleElements.get(i).select("span.post-meta").first();
-									if (imgElement != null) {
-										String postmeta = imgElement.text();
-										Log.i(TAG, "i==" + i + ";postmeta==" + postmeta);
-										sbean.setPostmeta(postmeta);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -1262,6 +1233,110 @@ public class MArticleJsoupService extends CommonService {
 		return mMArticleJson;
 	}
 	
+	
+	public static MArticleJson parseMMXZGImagePagerList(String href,int pageNo) {
+		MArticleJson mMArticleJson = new MArticleJson();
+		List<MArticleBean> list = new ArrayList<MArticleBean>();
+		int currentposition = 0;
+		try {
+			// href = makeURL(href, new HashMap<String, Object>() {
+			// {
+			// }
+			// });
+			if(pageNo>1){
+				//http://www.mmxzg.com/mote/1384.html
+				//http://www.mmxzg.com/mote/1384_2.html
+				href = href.replace(".html", "_")+pageNo+".html";
+			}
+//			
+			Document doc;
+			doc = Jsoup.connect(href).userAgent(UrlUtils.userAgent)
+//					.cookie("Cookie", "UM_distinctid=15d4f9ce60a4eb-050c6be969bcef-35414878-1aeaa0-15d4f9ce60b3bc; CNZZDATA1260136144=1243021942-1500278440-https%253A%252F%252Fwww.baidu.com%252F%7C1501116123; Hm_lvt_21e82dda40c2143d1c3187f1c80935ec=1500279272,1500968826,1501061381; Hm_lpvt_21e82dda40c2143d1c3187f1c80935ec=1501119552")
+					.timeout(10000).get();
+			Log.i(TAG, "url = " + href);
+
+//			Document doc = Jsoup.connect(href).userAgent(UrlUtils.userAgent).timeout(10000).get();
+//			 System.out.println(doc.toString());
+			try {
+				
+				// Element globalnavElement =
+				// doc.select("div.adFocusHtml").first();
+				Elements moduleElements = doc.select("div.srcPic");
+				if (moduleElements != null && moduleElements.size() > 0) {
+					for (int i = 0; i < moduleElements.size(); i++) {
+							MArticleBean sbean = new MArticleBean();
+							try {
+								sbean.setHref(href);
+								try {
+									Element imgElement = moduleElements.get(i).select("img").first();
+									if (imgElement != null) {
+										String alt = imgElement.attr("alt");
+										if(alt.contains("%u")){
+											alt = EscapeUnescapeUtils.unescape(alt);
+										}
+										Log.i(TAG, "i==" + i + ";alt==" + alt);
+										sbean.setAlt(alt);
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+
+								try {
+									Element imgElement = moduleElements.get(i).select("img").first();
+									if (imgElement != null) {
+										String dataimg = UrlUtils.MMXZG_COM+imgElement.attr("src");
+										Log.i(TAG, "i==" + i + ";dataimg==" + dataimg);
+										sbean.setDataimg(dataimg);
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+ 
+							list.add(sbean);
+						}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		//读取图片信息
+		try {
+			    URL url = new URL(href);
+			    InputStreamReader read = new InputStreamReader(url.openStream(), "utf-8");// 考虑到编码格式
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String lineTxt = null;
+                while ((lineTxt = bufferedReader.readLine()) != null) {//按行读取
+                    if (!"".equals(lineTxt)) {
+                    	if(lineTxt.contains("bigPic") && lineTxt.contains("format/webp")){
+                    		MArticleBean sbean = new MArticleBean();
+                    		//"bigPic": "//img.pximg.com/2017/07/42e36be241d9db6.jpg!/format/webp"},
+                    		String bigpic = lineTxt.replace("\"bigPic\": \"", "").replace("\"},", "");
+                    		System.out.println("bigpic=="+bigpic);
+                    		bigpic = "https:"+bigpic.replace("						", "").replace(" ", "").replace("\t\t", "").replace("\t", "");
+                    		sbean.setDataimg(bigpic);
+                    		list.add(sbean);
+                    	}
+                        System.out.println(lineTxt);
+                    }
+                }
+                read.close();//关闭InputStreamReader
+                bufferedReader.close();//关闭BufferedReader
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mMArticleJson.setList(list);
+		return mMArticleJson;
+	}
 	
 	public static MArticleJson parsePCImagePagerList(String href,int pageNo) {
 		MArticleJson mMArticleJson = new MArticleJson();

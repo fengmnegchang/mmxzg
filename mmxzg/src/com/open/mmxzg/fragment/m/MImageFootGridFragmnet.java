@@ -84,9 +84,9 @@ public class MImageFootGridFragmnet extends CommonPullToRefreshGridFragment<MArt
 //				href = url+"/page/"+pageNo;
 //			}
 //		}
-		String typename = "MArticleJsoupService-parsePXMImageFootList-"+pageNo;
+		String typename = "MArticleJsoupService-parseMMXZGMImageFootList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMArticleJson.setList(MArticleJsoupService.parsePXMImageFootList(url, pageNo));
+			mMArticleJson.setList(MArticleJsoupService.parseMMXZGMImageFootList(url, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();

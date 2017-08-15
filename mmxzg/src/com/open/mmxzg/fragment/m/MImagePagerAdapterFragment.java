@@ -59,10 +59,11 @@ public class MImagePagerAdapterFragment extends BaseV4Fragment<MArticleJson, MIm
 	public ViewPager viewpager;
 	public MImagePagerAdapter mMImagePagerAdapter;
 	public List<MArticleBean> list = new ArrayList<MArticleBean>();
-	public String url = UrlUtils.PXING_IMAGE;
+//	public String url = UrlUtils.PXING_IMAGE;
 	public WeakActivityReferenceHandler weakActivityReferenceHandler;
-	public int position;
+//	public int position;
 	public TextView text_page_foot;
+	public boolean isHasData;
 	
 	public static MImagePagerAdapterFragment newInstance(String url, boolean isVisibleToUser,WeakActivityReferenceHandler weakActivityReferenceHandler) {
 		MImagePagerAdapterFragment fragment = new MImagePagerAdapterFragment();
@@ -80,6 +81,7 @@ public class MImagePagerAdapterFragment extends BaseV4Fragment<MArticleJson, MIm
 		if(list!=null && list.size()>0){
 			fragment.list = list;
 			fragment.position = position;
+			fragment.isHasData = true;
 		}
 		return fragment;
 	}
@@ -122,10 +124,10 @@ public class MImagePagerAdapterFragment extends BaseV4Fragment<MArticleJson, MIm
 
 			@Override
 			public void onPageSelected(int position) {
-//				text_page_foot.setText((position+1)+" / "+list.size());
-//				MImagePagerAdapterFragment.this.position = position;
-//				pageNo=0;
-//				doAsync(MImagePagerAdapterFragment.this, MImagePagerAdapterFragment.this, MImagePagerAdapterFragment.this);
+				text_page_foot.setText((position+1)+" / "+list.size());
+				MImagePagerAdapterFragment.this.position = position;
+				pageNo++;
+				doAsync(MImagePagerAdapterFragment.this, MImagePagerAdapterFragment.this, MImagePagerAdapterFragment.this);
 			}
 
 			@Override
@@ -151,16 +153,16 @@ public class MImagePagerAdapterFragment extends BaseV4Fragment<MArticleJson, MIm
 	public MArticleJson call() throws Exception {
 		// TODO Auto-generated method stub
 		MArticleJson mMArticleJson =null;
-//		if(pageNo==1){
-//			mMArticleJson = MArticleJsoupService.parseImagePagerList(url,position);
-//		}else{
-//			mMArticleJson = new MArticleJson();
-//			mMArticleJson.setList(MArticleJsoupService.parseImageList(list.get(position).getHref(),position));
-//			mMArticleJson.setCurrentPosition(position);
-//		}
-		String typename = "MArticleJsoupService-parsePXMImageFootList-"+pageNo;
+		String typename = "MArticleJsoupService-parseMMXZGMImagePager-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMArticleJson = MArticleJsoupService.parsePXImagePagerList(url,position);
+//			mMArticleJson = MArticleJsoupService.parsePXImagePagerList(url,position);
+			if(pageNo==1){
+				mMArticleJson = MArticleJsoupService.parseImagePagerList(url,position);
+			}else{
+				mMArticleJson = new MArticleJson();
+				mMArticleJson.setList(MArticleJsoupService.parseImageList(list.get(position).getHref(),position));
+				mMArticleJson.setCurrentPosition(position);
+			}
 			try {
 				//数据存储
 				Gson gson = new Gson();
@@ -194,11 +196,17 @@ public class MImagePagerAdapterFragment extends BaseV4Fragment<MArticleJson, MIm
 		if(result==null){
 			return;
 		}
-		if(result.getList().size()>0){
-			list.clear();
+		if(list.size()==0){
+//			list.clear();
 			list.addAll(result.getList());
 		}else{
-			list.set(result.getCurrentPosition(), result.getList().get(0));
+			if(isHasData){
+				list.clear();
+				list.addAll(result.getList());
+				isHasData = false;
+			}else{
+				list.set(result.getCurrentPosition(), result.getList().get(0));
+			}
 		}
 		
 		mMImagePagerAdapter.notifyDataSetChanged();

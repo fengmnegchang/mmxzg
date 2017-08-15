@@ -19,8 +19,9 @@ import android.view.Window;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.open.mmxzg.R;
-import com.open.mmxzg.fragment.m.MArticlePullListFragmnet;
 import com.open.mmxzg.fragment.m.MLeftMenuPullListFragmnet;
+import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
+import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
@@ -49,8 +50,9 @@ public class MMainSlideMenuActivity extends SlidingFragmentActivity {
 		// url = "http://www.umei.cc/bizhitupian/diannaobizhi/7628.htm";
 		// Fragment fragment = UmeiArticlePagerFragment.newInstance(url, true);
 //		Fragment fragment = MIndexPagerFragment.newInstance(url,true);
-		Fragment fragment = MArticlePullListFragmnet.newInstance(url,true);
+		MArticlePullGridMVPFragment2 fragment = MArticlePullGridMVPFragment2.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_viewpager, fragment).commit();
+		new MArticlePullGridPresenterImpl(this, fragment,url);
 	}
 
 	private void initRightMenu() {

@@ -6,7 +6,9 @@
     <FrameLayout
         android:id="@+id/id_m_page"
         android:layout_width="match_parent"
-        android:layout_height="240dp" />
+        android:layout_height="240dp"
+        android:visibility="gone"
+         />
 
     <FrameLayout
         android:id="@+id/id_m_head"

@@ -89,9 +89,9 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 	public MSlideMenuJson call() throws Exception {
 		// TODO Auto-generated method stub
 		MSlideMenuJson mMSlideMenuJson = new MSlideMenuJson();
-		String typename = "MLeftMenuJsoupService-parseList-"+pageNo;
+		String typename = "MLeftMenuJsoupService-parseNavMenuList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseList(url, pageNo));
+			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseNavMenuList(url, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();

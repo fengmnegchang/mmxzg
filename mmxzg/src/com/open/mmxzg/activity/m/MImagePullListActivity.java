@@ -43,7 +43,7 @@ public class MImagePullListActivity extends MCommonTitleBarActivity{
 		if (getIntent().getStringExtra("URL") != null) {
 			url = getIntent().getStringExtra("URL");
 		} else {
-			url = UrlUtils.PXING_IMAGE;
+			url = UrlUtils.MMXZG_IMAGE;
 		}
 		addfragment();
 	}
