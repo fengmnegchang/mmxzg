@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +31,11 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.open.android.bean.CommonBean;
 import com.open.android.fragment.BaseV4MVPFragment;
+import com.open.android.json.CommonJson;
 import com.open.mmxzg.R;
-import com.open.mmxzg.adapter.m.MArticleListAdapter;
-import com.open.mmxzg.bean.m.MArticleBean;
-import com.open.mmxzg.json.m.MArticleJson;
-import com.open.mmxzg.presenter.MArticlePullListPresenter2;
+import com.open.mmxzg.mvp.base.CommonPresenter;
 import com.open.mmxzg.view.MArticlePullListView;
 
 /**
@@ -51,14 +49,15 @@ import com.open.mmxzg.view.MArticlePullListView;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullListMVPFragment extends BaseV4MVPFragment<MArticleJson, MArticlePullListMVPFragment> implements MArticlePullListView<MArticleJson,MArticlePullListPresenter2>,OnRefreshListener<ListView> ,OnItemClickListener{
-	private MArticlePullListPresenter2 mPresenter;
+public class CommonPullToRefreashListMVPFragment<B extends CommonBean, C extends CommonJson,P extends CommonPresenter> extends BaseV4MVPFragment<C, CommonPullToRefreashListMVPFragment> 
+implements MArticlePullListView<C,P>,OnRefreshListener<ListView> ,OnItemClickListener{
+	public P mPresenter;
 	public PullToRefreshListView mPullToRefreshListView;
-	public List<MArticleBean> list = new ArrayList<MArticleBean>();
-	public MArticleListAdapter mMArticleListAdapter;
+	public List<B> list = new ArrayList<B>();
+//	public MArticleListAdapter mMArticleListAdapter;
 
-	public static MArticlePullListMVPFragment newInstance(boolean isVisibleToUser) {
-		MArticlePullListMVPFragment fragment = new MArticlePullListMVPFragment();
+	public static CommonPullToRefreashListMVPFragment newInstance(boolean isVisibleToUser) {
+		CommonPullToRefreashListMVPFragment fragment = new CommonPullToRefreashListMVPFragment();
 		fragment.setFragment(fragment);
 		fragment.setUserVisibleHint(isVisibleToUser);
 		return fragment;
@@ -84,7 +83,7 @@ public class MArticlePullListMVPFragment extends BaseV4MVPFragment<MArticleJson,
 	 * @see com.open.mmxzg.mvp.base.BaseView#setPresenter(java.lang.Object)
 	 */
 	@Override
-	public void setPresenter(MArticlePullListPresenter2 presenter) {
+	public void setPresenter(P presenter) {
 		// TODO Auto-generated method stub
 		mPresenter = checkNotNull(presenter);
 	}
@@ -105,9 +104,9 @@ public class MArticlePullListMVPFragment extends BaseV4MVPFragment<MArticleJson,
 	@Override
 	public void initValues() {
 		// TODO Auto-generated method stub
-		mMArticleListAdapter = new MArticleListAdapter(getActivity(), list);
-		mPullToRefreshListView.setAdapter(mMArticleListAdapter);
-		mPullToRefreshListView.setMode(Mode.BOTH);
+//		mMArticleListAdapter = new MArticleListAdapter(getActivity(), list);
+//		mPullToRefreshListView.setAdapter(mMArticleListAdapter);
+//		mPullToRefreshListView.setMode(Mode.BOTH);
 	}
  
 	/* (non-Javadoc)
@@ -162,27 +161,10 @@ public class MArticlePullListMVPFragment extends BaseV4MVPFragment<MArticleJson,
 	 * @see com.open.mmxzg.model.MArticlePullListContract.View#onCallback(com.open.mmxzg.json.m.MArticleJson)
 	 */
 	@Override
-	public void onCallback(MArticleJson result) {
+	public void onCallback(C result) {
 		if(result==null){
 			return;
 		}
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		Log.i(TAG, "getMode ===" + mPullToRefreshListView.getCurrentMode());
-		if (mPullToRefreshListView.getCurrentMode() == Mode.PULL_FROM_START) {
-			list.clear();
-			list.addAll(result.getList());
-			pageNo = 1;
-			mPresenter.setPageNo(1);
-		} else {
-			if (result.getList() != null && result.getList().size() > 0) {
-				list.addAll(result.getList());
-			}
-		}
-		mMArticleListAdapter.notifyDataSetChanged();
-		// Call onRefreshComplete when the list has been refreshed.
-		mPullToRefreshListView.onRefreshComplete();
-		
 	}
 
 }

@@ -13,13 +13,11 @@ package com.open.mmxzg.activity.mvp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
 import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
-import com.open.mmxzg.fragment.mvp.MArticlePullListMVPFragment;
-import com.open.mmxzg.presenter.MArticlePullListPresenter;
-import com.open.mmxzg.utils.ActivityUtils;
+import com.open.mmxzg.fragment.mvp.MArticlePullListMVPFragment2;
+import com.open.mmxzg.presenter.impl.MArticlePullListPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
@@ -80,11 +78,11 @@ public class MArticlePullListMVPActivity extends MCommonTitleBarActivity {
 //			ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mMArticlePullListMVPFragmnet, R.id.layout_content);
 //		}
 		
-		MArticlePullListMVPFragment fragment =  MArticlePullListMVPFragment.newInstance(true);
+		MArticlePullListMVPFragment2 fragment =  MArticlePullListMVPFragment2.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
 		
 		// Create the presenter
-		new MArticlePullListPresenter(this, fragment,url);
+		new MArticlePullListPresenterImpl(this, fragment,url);
 	}
 
 	public static void startMArticlePullListMVPActivity(Context context, String url) {
