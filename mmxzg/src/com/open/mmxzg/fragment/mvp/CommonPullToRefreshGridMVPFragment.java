@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +31,11 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshHeadGridView;
+import com.open.android.bean.CommonBean;
 import com.open.android.fragment.BaseV4MVPFragment;
+import com.open.android.json.CommonJson;
 import com.open.mmxzg.R;
-import com.open.mmxzg.adapter.m.MArticleGridAdapter;
-import com.open.mmxzg.bean.m.MArticleBean;
-import com.open.mmxzg.json.m.MArticleJson;
-import com.open.mmxzg.presenter.MArticlePullGridPresenter;
+import com.open.mmxzg.mvp.base.CommonPresenter;
 import com.open.mmxzg.view.MArticlePullGridView;
 
 /**
@@ -51,14 +49,15 @@ import com.open.mmxzg.view.MArticlePullGridView;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticlePullGridMVPFragment, BaseV4MVPFragment> implements MArticlePullGridView<MArticleJson,MArticlePullGridPresenter>,OnRefreshListener<HeaderGridView> ,OnItemClickListener{
-	private MArticlePullGridPresenter mPresenter;
+public class CommonPullToRefreshGridMVPFragment<B extends CommonBean, C extends CommonJson,P extends CommonPresenter> extends BaseV4MVPFragment<C, CommonPullToRefreshGridMVPFragment> 
+implements MArticlePullGridView<C,P>,OnRefreshListener<HeaderGridView> ,OnItemClickListener{
+	public P mPresenter;
 	public PullToRefreshHeadGridView mPullToRefreshHeadGridView;
-	public List<MArticleBean> list = new ArrayList<MArticleBean>();
-	public MArticleGridAdapter mMArticleGridAdapter;
+	public List<B> list = new ArrayList<B>();
+//	public MArticleGridAdapter mMArticleGridAdapter;
 
-	public static MArticlePullGridMVPFragment newInstance(boolean isVisibleToUser) {
-		MArticlePullGridMVPFragment fragment = new MArticlePullGridMVPFragment();
+	public static CommonPullToRefreshGridMVPFragment newInstance(boolean isVisibleToUser) {
+		CommonPullToRefreshGridMVPFragment fragment = new CommonPullToRefreshGridMVPFragment();
 		fragment.setFragment(fragment);
 		fragment.setUserVisibleHint(isVisibleToUser);
 		return fragment;
@@ -83,7 +82,7 @@ public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticlePullG
 	 * @see com.open.mmxzg.mvp.base.BaseView#setPresenter(java.lang.Object)
 	 */
 	@Override
-	public void setPresenter(MArticlePullGridPresenter presenter) {
+	public void setPresenter(P presenter) {
 		// TODO Auto-generated method stub
 		mPresenter = checkNotNull(presenter);
 	}
@@ -104,9 +103,9 @@ public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticlePullG
 	@Override
 	public void initValues() {
 		// TODO Auto-generated method stub
-		mMArticleGridAdapter = new MArticleGridAdapter(getActivity(), list);
-		mPullToRefreshHeadGridView.setAdapter(mMArticleGridAdapter);
-		mPullToRefreshHeadGridView.setMode(Mode.BOTH);
+//		mMArticleGridAdapter = new MArticleGridAdapter(getActivity(), list);
+//		mPullToRefreshHeadGridView.setAdapter(mMArticleGridAdapter);
+//		mPullToRefreshHeadGridView.setMode(Mode.BOTH);
 	}
  
 	/* (non-Javadoc)
@@ -161,26 +160,10 @@ public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticlePullG
 	 * @see com.open.mmxzg.model.MArticlePullListContract.View#onCallback(com.open.mmxzg.json.m.MArticleJson)
 	 */
 	@Override
-	public void onCallback(MArticleJson result) {
+	public void onCallback(C result) {
 		if(result==null){
 			return;
 		}
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		Log.i(TAG, "getMode ===" + mPullToRefreshHeadGridView.getCurrentMode());
-		if (mPullToRefreshHeadGridView.getCurrentMode() == Mode.PULL_FROM_START) {
-			list.clear();
-			list.addAll(result.getList());
-			pageNo = 1;
-			mPresenter.setPageNo(1);
-		} else {
-			if (result.getList() != null && result.getList().size() > 0) {
-				list.addAll(result.getList());
-			}
-		}
-		mMArticleGridAdapter.notifyDataSetChanged();
-		// Call onRefreshComplete when the list has been refreshed.
-		mPullToRefreshHeadGridView.onRefreshComplete();
 		
 	}
  

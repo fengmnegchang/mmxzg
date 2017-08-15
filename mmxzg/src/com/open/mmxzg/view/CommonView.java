@@ -30,13 +30,13 @@ public interface CommonView<T,P> extends BaseView<P> {
 	 */
 	void onCallback(T result);
 
-	/**
-	 * 绑定事件
-	 */
-	void bindEvent();
-
-	/**
-	 * 初始化数据
-	 */
-	void initValues();
+//	/**
+//	 * 绑定事件
+//	 */
+//	void bindEvent();
+//
+//	/**
+//	 * 初始化数据
+//	 */
+//	void initValues();
 }

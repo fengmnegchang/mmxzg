@@ -79,18 +79,6 @@ public class MArticlePullListMVPFragment extends BaseV4MVPFragment<MArticlePullL
 		return root;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.Fragment#onActivityCreated(android.os.Bundle)
-	 */
-	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onActivityCreated(savedInstanceState);
-		initValues();
-		bindEvent();
-	}
 	
 	/* (non-Javadoc)
 	 * @see com.open.mmxzg.mvp.base.BaseView#setPresenter(java.lang.Object)

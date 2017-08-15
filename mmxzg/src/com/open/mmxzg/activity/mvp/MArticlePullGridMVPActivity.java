@@ -16,7 +16,7 @@ import android.content.Intent;
 
 import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
-import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment;
+import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
 import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
@@ -56,7 +56,7 @@ public class MArticlePullGridMVPActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		MArticlePullGridMVPFragment fragment =  MArticlePullGridMVPFragment.newInstance(true);
+		MArticlePullGridMVPFragment2 fragment =  MArticlePullGridMVPFragment2.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
 		
 		// Create the presenter
