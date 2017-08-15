@@ -28,7 +28,6 @@ import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
 import com.open.android.fragment.common.CommonPullToRefreshGridFragment;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
-import com.open.mmxzg.activity.pc.PCImagePullListActivity;
 import com.open.mmxzg.adapter.app.MCollectionGridAdapter;
 import com.open.mmxzg.json.m.OpenDBJson;
 import com.open.mmxzg.utils.UrlUtils;
@@ -146,7 +145,7 @@ public class MCollectionGridFragment extends CommonPullToRefreshGridFragment<Ope
 				mMCollectionGridAdapter.notifyDataSetChanged();
 			}else{
 				if(list.get((int)id).getUrl().contains(UrlUtils.MM_PC)){
-					PCImagePullListActivity.startPCImagePullListActivity(getActivity(), list.get((int)id).getUrl());
+//					PCImagePullListActivity.startPCImagePullListActivity(getActivity(), list.get((int)id).getUrl());
 				}else{
 					MImagePullListActivity.startMImagePullListActivity(getActivity(), list.get((int)id).getUrl());
 				}

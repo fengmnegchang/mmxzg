@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import com.open.android.adapter.CommonAdapter;
 import com.open.mmxzg.activity.m.MImagePullListActivity;
-import com.open.mmxzg.activity.pc.PCImagePullListActivity;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
@@ -62,7 +61,7 @@ public class MImageFootListAdapter extends CommonAdapter<MArticleBean>{
 				@Override
 				public void onClick(View v) {
 					if(bean.getHref().contains(UrlUtils.MM_PC)){
-						PCImagePullListActivity.startPCImagePullListActivity(mContext, bean.getHref());
+//						PCImagePullListActivity.startPCImagePullListActivity(mContext, bean.getHref());
 					}else{
 						MImagePullListActivity.startMImagePullListActivity(mContext, bean.getHref());
 					}

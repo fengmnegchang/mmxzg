@@ -375,63 +375,6 @@
             android:description="@string/mmxzg_qq_auth_login_desp" >
         </activity>
         
-        <!--pxing pc 性感grid列表 -->
-        <activity
-            android:name="com.open.mmxzg.activity.pc.PCNavGridFragmentActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_pc_nav_grid_list_desp"
-             >
-        </activity>
-        <!-- pxing pc slide menu-->
-        <activity
-            android:name="com.open.mmxzg.activity.pc.PCMainSlideMenuActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_pc_slide_menu_desp"
-            android:theme="@style/Theme.PageIndicatorDefaults"
-            >
-        </activity>
-        <!--  pxing pc  导航pager -->
-        <activity
-            android:name="com.open.mmxzg.activity.pc.PCFocusViewPagerFragmentActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_pc_focus_pager_desp" >
-        </activity>
-         <!-- pxing pc看图 -->
-        <activity
-            android:name="com.open.mmxzg.activity.pc.PCImagePullListActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_pc_image_list_desp" >
-        </activity>
-        <!-- pxing pc看图pager -->
-        <activity
-            android:name="com.open.mmxzg.activity.pc.PCImagePagerAdapterFragmentActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_pc_image_pager_list_desp" >
-        </activity>
-        <!-- main weex-->
-        <activity
-            android:name="com.open.android.weex.WeexMainActivity"
-            android:description="@string/mmxzg_weex_main_desp" 
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            >
-        </activity>
-        
-        <activity
-            android:name="com.open.android.weex.WeexNavigatorActivity"
-            android:description="@string/mmxzg_weex_nav_desp" 
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            >
-            <intent-filter>
-                 <action android:name="com.taobao.android.intent.action.WEEX"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="com.taobao.android.intent.category.WEEX"/>
-                <action android:name="android.intent.action.VIEW"/>
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="file"/>
-                <data android:scheme="wxpage"/>
-            </intent-filter>
-        </activity>
         <!-- 所有类列表 -->
         <activity
             android:name="com.open.android.activity.common.CommonALLActivity"
