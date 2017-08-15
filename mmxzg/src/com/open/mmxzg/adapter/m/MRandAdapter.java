@@ -23,10 +23,9 @@ import android.widget.TextView;
 
 import com.open.android.adapter.CommonAdapter;
 import com.open.android.view.ExpendGridView;
-import com.open.mmxzg.activity.m.MSearchArticlePullListActivity;
+import com.open.mmxzg.R;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.bean.pc.HomeArticleBean;
-import com.open.mmxzg.R;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -67,7 +66,7 @@ public class MRandAdapter extends CommonAdapter<HomeArticleBean> {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					if(id!=-1 && list!=null && list.size()>0 && list.get((int)id)!=null){
-						MSearchArticlePullListActivity.startMSearchArticlePullListActivity(mContext, list.get((int)id).getHref());
+//						MSearchArticlePullListActivity.startMSearchArticlePullListActivity(mContext, list.get((int)id).getHref());
 					}
 					
 				}

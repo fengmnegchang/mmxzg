@@ -24,7 +24,6 @@ import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
 import com.open.android.fragment.common.CommonPullToRefreshListFragment;
 import com.open.android.utils.NetWorkUtils;
-import com.open.mmxzg.activity.m.MSearchArticlePullListActivity;
 import com.open.mmxzg.adapter.m.MRandTagAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
@@ -154,7 +153,7 @@ public class MRandTagListFragment extends CommonPullToRefreshListFragment<MArtic
 		// TODO Auto-generated method stub
 //		super.onItemClick(parent, view, position, id);
 		if(id!=-1 && list.get((int)id)!=null){
-			MSearchArticlePullListActivity.startMSearchArticlePullListActivity(getActivity(), list.get((int)id).getHref());
+//			MSearchArticlePullListActivity.startMSearchArticlePullListActivity(getActivity(), list.get((int)id).getHref());
 		}
 	}
 }

@@ -18,10 +18,10 @@ import android.view.Window;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.open.mmxzg.R;
 import com.open.mmxzg.fragment.m.MArticlePullListFragmnet;
 import com.open.mmxzg.fragment.m.MLeftMenuPullListFragmnet;
 import com.open.mmxzg.utils.UrlUtils;
-import com.open.mmxzg.R;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -35,7 +35,7 @@ import com.open.mmxzg.R;
  *****************************************************************************************************************************************************************************
  */
 public class MMainSlideMenuActivity extends SlidingFragmentActivity {
-	private String url = UrlUtils.PXING_NEW;
+	private String url = UrlUtils.MMXZG;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,7 @@ public class MMainSlideMenuActivity extends SlidingFragmentActivity {
 	
 	public void toSearch(View view) {
 //		MSearchEditFragmentActivity.startMSearchEditFragmentActivity(this, url);
-		MCommonTitleBarSearchEditFragmentActivity.startMCommonTitleBarSearchEditFragmentActivity(this, url);
+//		MCommonTitleBarSearchEditFragmentActivity.startMCommonTitleBarSearchEditFragmentActivity(this, url);
 	}
 
 }

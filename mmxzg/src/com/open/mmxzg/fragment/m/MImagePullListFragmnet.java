@@ -28,13 +28,12 @@ import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
 import com.open.android.fragment.common.CommonPullToRefreshListFragment;
 import com.open.android.utils.NetWorkUtils;
+import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MImagePagerAdapterFragmentActivity;
-import com.open.mmxzg.activity.m.MVideoViewActivity;
 import com.open.mmxzg.adapter.m.MImageListAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
-import com.open.mmxzg.R;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -163,7 +162,7 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 			mMArticleJson.setCurrentPosition((int)id);
 			if(list.get(0).getHref().contains(".mp4")){
 //				MiStatInterface.recordCountEvent("视频", "播放视频");
-				MVideoViewActivity.startMVideoViewActivity(getActivity(), list.get(0).getHref());
+//				MVideoViewActivity.startMVideoViewActivity(getActivity(), list.get(0).getHref());
 			}else{
 				MImagePagerAdapterFragmentActivity.startMImagePagerAdapterFragmentActivity(getActivity(),list.get(0).getHref(), mMArticleJson);
 			}

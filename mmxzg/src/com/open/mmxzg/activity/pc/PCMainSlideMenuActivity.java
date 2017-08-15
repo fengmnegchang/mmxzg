@@ -18,11 +18,10 @@ import android.view.Window;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-import com.open.mmxzg.activity.m.MCommonTitleBarSearchEditFragmentActivity;
+import com.open.mmxzg.R;
 import com.open.mmxzg.fragment.app.MAppLeftMenuPullListFragmnet;
 import com.open.mmxzg.fragment.pc.PCTabIndicatorFragment;
 import com.open.mmxzg.utils.UrlUtils;
-import com.open.mmxzg.R;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -86,7 +85,7 @@ public class PCMainSlideMenuActivity extends SlidingFragmentActivity {
 	
 	public void toSearch(View view) {
 //		MSearchEditFragmentActivity.startMSearchEditFragmentActivity(this, url);
-		MCommonTitleBarSearchEditFragmentActivity.startMCommonTitleBarSearchEditFragmentActivity(this, url);
+//		MCommonTitleBarSearchEditFragmentActivity.startMCommonTitleBarSearchEditFragmentActivity(this, url);
 	}
 
 }

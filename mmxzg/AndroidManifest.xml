@@ -250,24 +250,6 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_main_list_desp" >
         </activity>
-         <!-- pxing 播放本地音频 -->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MMediaPlayerActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_media_player_desp" >
-        </activity>
-        <!-- pxing 播放本地视频 -->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MVideoViewActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_video_desp" >
-        </activity>
-         <!-- pxing sex列表 -->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MSexNovelPullListActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_sex_novel_list_desp" >
-        </activity>
         <!-- pxing 主列表grid -->
         <activity
             android:name="com.open.mmxzg.activity.m.MArticlePullGridActivity"
@@ -294,31 +276,11 @@
             android:theme="@style/Theme.PageIndicatorDefaults"
             >
         </activity>
-         <!--m搜索条件-->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MSearchEditFragmentActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_search_desp"
-            >
-        </activity>
-         <!-- pxing 搜索列表 -->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MSearchArticlePullListActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_search_list_desp" >
-        </activity>
          <!-- pxing titlebar -->
         <activity
             android:name="com.open.mmxzg.activity.m.MCommonTitleBarActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_titlebar_list_desp" >
-        </activity>
-         <!--m titlebar搜索条件-->
-        <activity
-            android:name="com.open.mmxzg.activity.m.MCommonTitleBarSearchEditFragmentActivity"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:description="@string/mmxzg_titlebar_search_desp"
-            >
         </activity>
         <!-- pxing 看图 -->
         <activity
