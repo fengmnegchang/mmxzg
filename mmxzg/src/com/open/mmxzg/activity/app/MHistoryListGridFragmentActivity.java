@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
 import com.open.mmxzg.fragment.app.MHistoryListGridFragment;
+import com.open.mmxzg.fragment.mvp.MHistoryListGridMVPFragment;
+import com.open.mmxzg.presenter.impl.MHistoryListGridPresenterImpl;
 import com.open.mmxzg.utils.DialogUitls;
 import com.open.mmxzg.utils.UrlUtils;
-import com.open.mmxzg.R;
 
 public class MHistoryListGridFragmentActivity  extends MCommonTitleBarActivity{
 	/*
@@ -49,7 +50,7 @@ public class MHistoryListGridFragmentActivity  extends MCommonTitleBarActivity{
 			DialogUitls.commondialog(this, "提示", "您看过的内容会被记录下来，方便您再次快速浏览。确认要清空历史记录吗？", "残忍清除", "容我看看", new OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					MHistoryListGridFragment fragment = (MHistoryListGridFragment) getSupportFragmentManager()
+					MHistoryListGridMVPFragment fragment = (MHistoryListGridMVPFragment) getSupportFragmentManager()
 							.findFragmentById(R.id.layout_content);
 					fragment.cleanHistory();
 					dialog.dismiss();
@@ -78,8 +79,9 @@ public class MHistoryListGridFragmentActivity  extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MHistoryListGridFragment.newInstance(url, true);
+		MHistoryListGridMVPFragment fragment = MHistoryListGridMVPFragment.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		new MHistoryListGridPresenterImpl(this, fragment);
 	}
 
 	public static void startMHistoryListGridFragmentActivity(Context context, String url) {
