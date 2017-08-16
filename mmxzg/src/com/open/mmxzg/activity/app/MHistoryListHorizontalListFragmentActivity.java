@@ -13,12 +13,12 @@ package com.open.mmxzg.activity.app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
-import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
-import com.open.mmxzg.fragment.app.MHistoryListHorizontalListFragment;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
+import com.open.mmxzg.fragment.mvp.MHistoryListHorizontalListMVPFragment;
+import com.open.mmxzg.presenter.impl.MHistoryListGridPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -56,8 +56,9 @@ public class MHistoryListHorizontalListFragmentActivity  extends MCommonTitleBar
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MHistoryListHorizontalListFragment.newInstance(url, true);
+		MHistoryListHorizontalListMVPFragment fragment = MHistoryListHorizontalListMVPFragment.newInstance(url, true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		new MHistoryListGridPresenterImpl(this, fragment);
 	}
 
 	public static void startMHistoryListHorizontalListFragmentActivity(Context context, String url) {

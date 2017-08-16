@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
-import com.open.mmxzg.fragment.app.MHistoryListGridFragment;
 import com.open.mmxzg.fragment.mvp.MHistoryListGridMVPFragment;
 import com.open.mmxzg.presenter.impl.MHistoryListGridPresenterImpl;
 import com.open.mmxzg.utils.DialogUitls;
