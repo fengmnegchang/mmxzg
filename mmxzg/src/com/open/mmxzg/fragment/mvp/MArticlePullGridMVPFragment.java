@@ -54,7 +54,7 @@ import com.open.mmxzg.view.MArticlePullGridView;
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticlePullGridMVPFragment, BaseV4MVPFragment> implements MArticlePullGridView<MArticleJson,MArticlePullGridPresenter>,OnRefreshListener<HeaderGridView> ,OnItemClickListener{
+public class MArticlePullGridMVPFragment extends BaseV4MVPFragment<MArticleJson, MArticlePullGridMVPFragment> implements MArticlePullGridView<MArticleJson,MArticlePullGridPresenter>,OnRefreshListener<HeaderGridView> ,OnItemClickListener{
 	private MArticlePullGridPresenter mPresenter;
 	public PullToRefreshHeadGridView mPullToRefreshHeadGridView;
 	public List<MArticleBean> list = new ArrayList<MArticleBean>();

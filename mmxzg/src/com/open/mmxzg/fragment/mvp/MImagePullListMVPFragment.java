@@ -2,16 +2,14 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-7下午5:33:37
+ * @createTime:2017-8-16上午10:37:13
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-package com.open.mmxzg.fragment.m;
-
-import java.util.List;
+package com.open.mmxzg.fragment.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,42 +19,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.open.android.bean.db.OpenDBBean;
-import com.open.android.db.service.OpenDBService;
-import com.open.android.fragment.common.CommonPullToRefreshListFragment;
-import com.open.android.utils.NetWorkUtils;
+import com.open.android.fragment.common.CommonPullToRefreashListMVPFragment;
 import com.open.mmxzg.R;
 import com.open.mmxzg.activity.m.MImagePagerAdapterFragmentActivity;
 import com.open.mmxzg.adapter.m.MImageListAdapter;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.json.m.MArticleJson;
-import com.open.mmxzg.jsoup.m.MArticleJsoupService;
+import com.open.mmxzg.presenter.MImagePullListPresenter;
+import com.open.mmxzg.presenter.impl.MImageFootGridPresenterImpl;
+import com.open.mmxzg.view.MImagePullListView;
 
 /**
  ***************************************************************************************************************************************************************************** 
  * 
  * @author :fengguangjing
- * @createTime:2017-6-7下午5:33:37
+ * @createTime:2017-8-16上午10:37:13
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  ***************************************************************************************************************************************************************************** 
  */
-public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArticleBean, MArticleJson> {
+public class MImagePullListMVPFragment extends CommonPullToRefreashListMVPFragment<MArticleBean, MArticleJson, MImagePullListPresenter> implements
+		MImagePullListView<MArticleJson, MImagePullListPresenter> {
 	public MImageListAdapter mMImageListAdapter;
-	public View headview,footview;
+	public View headview, footview;
 
-	public static MImagePullListFragmnet newInstance(String url, boolean isVisibleToUser) {
-		MImagePullListFragmnet fragment = new MImagePullListFragmnet();
+	public static MImagePullListMVPFragment newInstance(String url, boolean isVisibleToUser) {
+		MImagePullListMVPFragment fragment = new MImagePullListMVPFragment();
 		fragment.setFragment(fragment);
 		fragment.setUserVisibleHint(isVisibleToUser);
 		fragment.url = url;
 		return fragment;
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_common_pulllistview, container, false);
@@ -65,6 +63,7 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 		footview = LayoutInflater.from(getActivity()).inflate(R.layout.layout_expend_footview, null);
 		return view;
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -73,51 +72,21 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 	@Override
 	public void initValues() {
 		// TODO Auto-generated method stub
-//		mPullToRefreshListView.getRefreshableView().addFooterView(footview);
+		// mPullToRefreshListView.getRefreshableView().addFooterView(footview);
 		mPullToRefreshListView.getRefreshableView().addHeaderView(headview);
-//		MImageHeadFragmnet hfragment = MImageHeadFragmnet.newInstance(url, true);
-//		getChildFragmentManager().beginTransaction().replace(R.id.id_expend_foot, hfragment).commit();
-//		
-//		
-		MImageFootExpendGridFragmnet ffragment = MImageFootExpendGridFragmnet.newInstance(url, true);
+		// MImageHeadFragmnet hfragment = MImageHeadFragmnet.newInstance(url,
+		// true);
+		// getChildFragmentManager().beginTransaction().replace(R.id.id_expend_foot,
+		// hfragment).commit();
+		//
+		//
+		MImageFootExpendGridMVPFragmnet ffragment = MImageFootExpendGridMVPFragmnet.newInstance(true);
 		getChildFragmentManager().beginTransaction().replace(R.id.id_m_head, ffragment).commit();
-		
+		new MImageFootGridPresenterImpl(getActivity(), ffragment, url);
+
 		mMImageListAdapter = new MImageListAdapter(getActivity(), list);
 		mPullToRefreshListView.setAdapter(mMImageListAdapter);
 		mPullToRefreshListView.setMode(Mode.BOTH);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.open.android.fragment.common.CommonPullToRefreshListFragment#call()
-	 */
-	@Override
-	public MArticleJson call() throws Exception {
-		// TODO Auto-generated method stub
-		MArticleJson mMArticleJson;
-		String typename = "MArticleJsoupService-parseMMXZGImagePagerList-"+position;
-		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			 mMArticleJson = MArticleJsoupService.parseMMXZGImagePagerList(url,position);
-			try {
-				//数据存储
-				Gson gson = new Gson();
-				OpenDBBean  openbean = new OpenDBBean();
-	    	    openbean.setUrl(url);
-	    	    openbean.setTypename(typename);
-			    openbean.setTitle(gson.toJson(mMArticleJson));
-			    OpenDBService.insert(getActivity(), openbean);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else{
-			List<OpenDBBean> beanlist =  OpenDBService.queryListType(getActivity(), url,typename);
-			String result = beanlist.get(0).getTitle();
-			Gson gson = new Gson();
-			mMArticleJson = gson.fromJson(result, MArticleJson.class);
-		}
-		return mMArticleJson;
 	}
 
 	/*
@@ -131,7 +100,7 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 	public void onCallback(MArticleJson result) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		if(result==null){
+		if (result == null) {
 			return;
 		}
 		Log.i(TAG, "getMode ===" + mPullToRefreshListView.getCurrentMode());
@@ -148,25 +117,30 @@ public class MImagePullListFragmnet extends CommonPullToRefreshListFragment<MArt
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullToRefreshListView.onRefreshComplete();
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.open.android.fragment.common.CommonPullToRefreshListFragment#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.open.android.fragment.common.CommonPullToRefreshListFragment#onItemClick
+	 * (android.widget.AdapterView, android.view.View, int, long)
 	 */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onItemClick(parent, view, position, id);
-		if(id!=-1 && list.get((int)id)!=null){
+		if (id != -1 && list.get((int) id) != null) {
 			MArticleJson mMArticleJson = new MArticleJson();
 			mMArticleJson.setList(list);
-			mMArticleJson.setCurrentPosition((int)id);
-			if(list.get(0).getHref().contains(".mp4")){
-//				MiStatInterface.recordCountEvent("视频", "播放视频");
-//				MVideoViewActivity.startMVideoViewActivity(getActivity(), list.get(0).getHref());
-			}else{
-				MImagePagerAdapterFragmentActivity.startMImagePagerAdapterFragmentActivity(getActivity(),list.get(0).getHref(), mMArticleJson);
+			mMArticleJson.setCurrentPosition((int) id);
+			if (list.get(0).getHref().contains(".mp4")) {
+				// MiStatInterface.recordCountEvent("视频", "播放视频");
+				// MVideoViewActivity.startMVideoViewActivity(getActivity(),
+				// list.get(0).getHref());
+			} else {
+				MImagePagerAdapterFragmentActivity.startMImagePagerAdapterFragmentActivity(getActivity(), list.get(0).getHref(), mMArticleJson);
 			}
 		}
 	}
-  
+
 }

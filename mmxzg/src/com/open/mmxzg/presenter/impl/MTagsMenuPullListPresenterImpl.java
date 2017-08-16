@@ -41,11 +41,9 @@ import com.open.mmxzg.view.MTagsMenuPullListView;
  */
 public class MTagsMenuPullListPresenterImpl extends CommonAsyncTaskPresenter<MSlideMenuJson> implements MTagsMenuPullListPresenter{
 	private MTagsMenuPullListView mMTagsMenuPullListView;
-	private Context context;
-	
 	
 	public  MTagsMenuPullListPresenterImpl(Context context,@NonNull MTagsMenuPullListView view,String url){
-		this.context = context;
+		this.mContext = context;
 		this.url = url;
 		mMTagsMenuPullListView = checkNotNull(view, "view cannot be null!");
 		mMTagsMenuPullListView.setPresenter(this);
@@ -62,7 +60,7 @@ public class MTagsMenuPullListPresenterImpl extends CommonAsyncTaskPresenter<MSl
 		// TODO Auto-generated method stub
 		MSlideMenuJson mMSlideMenuJson = new MSlideMenuJson();
 		String typename = "MLeftMenuJsoupService-parseTagsMenuList-"+pageNo;
-		if(NetWorkUtils.isNetworkAvailable(context)){
+		if(NetWorkUtils.isNetworkAvailable(mContext)){
 			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseTagsMenuList(url, pageNo));
 			try {
 				//数据存储
@@ -71,7 +69,7 @@ public class MTagsMenuPullListPresenterImpl extends CommonAsyncTaskPresenter<MSl
 	    	    openbean.setUrl(url);
 	    	    openbean.setTypename(typename);
 			    openbean.setTitle(gson.toJson(mMSlideMenuJson));
-			    OpenDBService.insert(context, openbean);
+			    OpenDBService.insert(mContext, openbean);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -81,7 +79,7 @@ public class MTagsMenuPullListPresenterImpl extends CommonAsyncTaskPresenter<MSl
 				e.printStackTrace();
 			}
 		}else{
-			List<OpenDBBean> beanlist =  OpenDBService.queryListType(context, url,typename);
+			List<OpenDBBean> beanlist =  OpenDBService.queryListType(mContext, url,typename);
 			String result = beanlist.get(0).getTitle();
 			Gson gson = new Gson();
 			mMSlideMenuJson = gson.fromJson(result, MSlideMenuJson.class);

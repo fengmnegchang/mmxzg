@@ -13,11 +13,11 @@ package com.open.mmxzg.activity.m;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
-import com.open.mmxzg.fragment.m.MImagePullListFragmnet;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.fragment.mvp.MImagePullListMVPFragment;
+import com.open.mmxzg.presenter.impl.MImagePullListPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -55,8 +55,9 @@ public class MImagePullListActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MImagePullListFragmnet.newInstance(url, true);
+		MImagePullListMVPFragment fragment = MImagePullListMVPFragment.newInstance(url, true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		new MImagePullListPresenterImpl(this, fragment, url);
 	}
 
 	public static void startMImagePullListActivity(Context context, String url) {

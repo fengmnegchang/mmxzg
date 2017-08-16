@@ -13,11 +13,11 @@ package com.open.mmxzg.activity.m;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
-import com.open.mmxzg.fragment.m.MImageFootGridFragmnet;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.fragment.mvp.MImageFootGridMVPFragmnet;
+import com.open.mmxzg.presenter.impl.MImageFootGridPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -55,8 +55,9 @@ public class MImageFootListActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MImageFootGridFragmnet.newInstance(url, true);
+		MImageFootGridMVPFragmnet fragment = MImageFootGridMVPFragmnet.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		new MImageFootGridPresenterImpl(this, fragment, url);
 	}
 
 	public static void startMImageFootListActivity(Context context, String url) {

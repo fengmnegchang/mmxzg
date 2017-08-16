@@ -41,7 +41,6 @@ import com.open.mmxzg.view.MArticlePullListView;
  */
 public class MArticlePullListPresenterImpl extends CommonAsyncTaskPresenter<MArticleJson> implements MArticlePullListPresenter2 {
 	private MArticlePullListView mMArticlePullListView;
-	private Context mContext;
 
 	public MArticlePullListPresenterImpl(Context context, @NonNull MArticlePullListView view, String url) {
 		mMArticlePullListView = checkNotNull(view, "MArticlePullListView cannot be null!");

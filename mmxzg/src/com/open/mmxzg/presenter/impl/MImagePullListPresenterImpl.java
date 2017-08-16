@@ -2,7 +2,7 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-8-15下午5:59:47
+ * @createTime:2017-8-16上午10:33:09
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
@@ -11,70 +11,69 @@
  */
 package com.open.mmxzg.presenter.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
 import com.open.android.mvp.base.CommonAsyncTaskPresenter;
 import com.open.android.utils.NetWorkUtils;
-import com.open.mmxzg.json.m.MSlideMenuJson;
-import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
-import com.open.mmxzg.presenter.MLeftMenuPullListPresenter;
-import com.open.mmxzg.view.MLeftMenuPullListView;
+import com.open.mmxzg.json.m.MArticleJson;
+import com.open.mmxzg.jsoup.m.MArticleJsoupService;
+import com.open.mmxzg.presenter.MImagePullListPresenter;
+import com.open.mmxzg.view.MImagePullListView;
 
 /**
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-8-15下午5:59:47
+ * @createTime:2017-8-16上午10:33:09
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MLeftMenuPullListPresenterImpl extends   CommonAsyncTaskPresenter<MSlideMenuJson> implements MLeftMenuPullListPresenter{
-	private MLeftMenuPullListView mMLeftMenuPullListView;
-
-	public MLeftMenuPullListPresenterImpl(Context context, @NonNull MLeftMenuPullListView view, String url) {
-		mMLeftMenuPullListView = checkNotNull(view, "mMLeftMenuPullListView cannot be null!");
-		mMLeftMenuPullListView.setPresenter(this);
-		this.mContext = context;
+public class MImagePullListPresenterImpl extends CommonAsyncTaskPresenter<MArticleJson> implements MImagePullListPresenter {
+	private MImagePullListView mMImagePullListView;
+	
+	public MImagePullListPresenterImpl(Context mContext,MImagePullListView view,String url){
+		this.mContext = mContext;
 		this.url = url;
+		this.mMImagePullListView = view;
+		this.mMImagePullListView.setPresenter(this);
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.open.android.fragment.common.CommonPullToRefreshListFragment#call()
+	/* (non-Javadoc)
+	 * @see com.open.android.mvp.base.CommonAsyncTaskPresenter#onCallback(java.lang.Object)
 	 */
 	@Override
-	public MSlideMenuJson call() throws Exception {
+	public void onCallback(MArticleJson result) {
 		// TODO Auto-generated method stub
-		MSlideMenuJson mMSlideMenuJson = new MSlideMenuJson();
-		String typename = "MLeftMenuJsoupService-parseNavMenuList-"+pageNo;
+		super.onCallback(result);
+		mMImagePullListView.onCallback(result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.open.android.mvp.base.CommonAsyncTaskPresenter#call()
+	 */
+	@Override
+	public MArticleJson call() throws Exception {
+		// TODO Auto-generated method stub
+		MArticleJson mMArticleJson;
+		String typename = "MArticleJsoupService-parseMMXZGImagePagerList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(mContext)){
-			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseNavMenuList(url, pageNo));
+			 mMArticleJson = MArticleJsoupService.parseMMXZGImagePagerList(url,pageNo);
 			try {
 				//数据存储
 				Gson gson = new Gson();
 				OpenDBBean  openbean = new OpenDBBean();
 	    	    openbean.setUrl(url);
 	    	    openbean.setTypename(typename);
-			    openbean.setTitle(gson.toJson(mMSlideMenuJson));
+			    openbean.setTitle(gson.toJson(mMArticleJson));
 			    OpenDBService.insert(mContext, openbean);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-//				NavMenuDBService.navmenu(mMSlideMenuJson);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -82,23 +81,12 @@ public class MLeftMenuPullListPresenterImpl extends   CommonAsyncTaskPresenter<M
 			List<OpenDBBean> beanlist =  OpenDBService.queryListType(mContext, url,typename);
 			String result = beanlist.get(0).getTitle();
 			Gson gson = new Gson();
-			mMSlideMenuJson = gson.fromJson(result, MSlideMenuJson.class);
+			mMArticleJson = gson.fromJson(result, MArticleJson.class);
 		}
-		return mMSlideMenuJson;
+		return mMArticleJson;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.open.android.fragment.common.CommonPullToRefreshListFragment#onCallback
-	 * (com.open.android.json.CommonJson)
-	 */
-	@Override
-	public void onCallback(MSlideMenuJson result) {
-		mMLeftMenuPullListView.onCallback(result);
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.open.android.mvp.presenter.CommonPresenter#doAsync()
 	 */
@@ -108,8 +96,7 @@ public class MLeftMenuPullListPresenterImpl extends   CommonAsyncTaskPresenter<M
 		try {
 			doAsync(this, this, this);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 
@@ -128,7 +115,7 @@ public class MLeftMenuPullListPresenterImpl extends   CommonAsyncTaskPresenter<M
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
