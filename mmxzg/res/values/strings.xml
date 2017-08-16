@@ -47,6 +47,7 @@
 	<string name="mmxzg_mvp_task_list_desp">mmxzg mvp task list</string>
 	<string name="mmxzg_mvp_main_list_desp">mmxzg mvp主列表</string>
 	<string name="mmxzg_mvp_main_grid_desp">mmxzg mvp主列表grid</string>
+	<string name="mmxzg_mvp_main_act_grid_desp">mmxzg mvp主列表act view grid</string>
 	
 	<string name="ok">确认</string>
     <string name="cancel">取消</string>

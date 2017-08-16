@@ -84,6 +84,13 @@
             android:theme="@style/AppTheme"
             android:description="@string/mmxzg_mvp_main_grid_desp" >
         </activity>
+        <!-- pxing 主列表mvp activity view grid-->
+         <activity
+            android:name="com.open.mmxzg.activity.mvp.MArticlePullGridMVPActivity2"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:theme="@style/AppTheme"
+            android:description="@string/mmxzg_mvp_main_act_grid_desp" >
+        </activity>
        <!-- pxing 主列表mvp -->
         <activity
             android:name="com.open.mmxzg.activity.mvp.MArticlePullListMVPActivity"
