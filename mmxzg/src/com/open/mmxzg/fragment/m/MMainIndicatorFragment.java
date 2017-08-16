@@ -29,12 +29,12 @@ import com.open.android.db.service.OpenDBService;
 import com.open.android.fragment.BaseV4Fragment;
 import com.open.android.utils.NetWorkUtils;
 import com.open.indicator.TabPageIndicator;
-import com.open.mmxzg.bean.m.MSlideMenuBean;
-import com.open.mmxzg.json.m.MArticleJson;
-import com.open.mmxzg.json.m.MSlideMenuJson;
-import com.open.mmxzg.jsoup.m.MArticleJsoupService;
-import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
 import com.open.mmxzg.R;
+import com.open.mmxzg.bean.m.MSlideMenuBean;
+import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
+import com.open.mmxzg.json.m.MSlideMenuJson;
+import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
+import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -54,6 +54,7 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 	public List<String> titleList = new ArrayList<String>();
 	public List<Fragment> listRankFragment = new ArrayList<Fragment>();// view数组
 	public CommonFragmentPagerAdapter mRankPagerAdapter;
+	public List<MArticlePullGridPresenterImpl> listPresenterImpl = new ArrayList<MArticlePullGridPresenterImpl>();// 
 
 	public static MMainIndicatorFragment newInstance(String url, boolean isVisibleToUser) {
 		MMainIndicatorFragment fragment = new MMainIndicatorFragment();
@@ -123,20 +124,21 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 		list.addAll(result.getList());
 		titleList.clear();
 
-		Fragment fragment;
+		MArticlePullGridMVPFragment2 fragment;
 		for (int i=0;i< result.getList().size();i++) {
 			MSlideMenuBean bean = result.getList().get(i);
 			titleList.add(bean.getTitle());
 			if(i==0){
-				fragment = MArticlePullGridFragmnet.newInstance(bean.getHref(),true);
+				fragment = MArticlePullGridMVPFragment2.newInstance(true);
 			}else{
 //				if("性爱技巧".equals(bean.getTitle())){
 //    				fragment = MSexNovelPullListFragmnet.newInstance(bean.getHref(), false);
 //				}else{
 //					fragment = MArticlePullGridFragmnet.newInstance(bean.getHref(),false);
 //				}
-				fragment = MArticlePullGridFragmnet.newInstance(bean.getHref(),false);
+				fragment = MArticlePullGridMVPFragment2.newInstance(false);
 			}
+			listPresenterImpl.add(new MArticlePullGridPresenterImpl(getActivity(), fragment, bean.getHref()));
 			listRankFragment.add(fragment);
 		}
 		mRankPagerAdapter.notifyDataSetChanged();

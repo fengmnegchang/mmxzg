@@ -24,7 +24,6 @@ import com.open.android.db.service.OpenDBService;
 import com.open.android.fragment.common.CommonPullToRefreshListFragment;
 import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.PXingWebViewActivity;
-import com.open.mmxzg.activity.m.MArticlePullListActivity;
 import com.open.mmxzg.activity.mvp.MArticlePullListMVPActivity;
 import com.open.mmxzg.adapter.m.MSlideMenuAdapter;
 import com.open.mmxzg.bean.m.MSlideMenuBean;

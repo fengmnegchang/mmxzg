@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.open.android.activity.common.CommonCommonFragmentActivity;
-import com.open.mmxzg.fragment.m.MArticlePullListFragmnet;
 import com.open.mmxzg.R;
 
 /**
@@ -76,8 +75,8 @@ public class MCommonTitleBarActivity extends CommonCommonFragmentActivity implem
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MArticlePullListFragmnet.newInstance(url, true);
-		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+//		Fragment fragment = MArticlePullListFragmnet.newInstance(url, true);
+//		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
 	}
 
 //	public void showLeftMenu(View view) {
