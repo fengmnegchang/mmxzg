@@ -155,6 +155,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = "https:"+imgElement.attr("lazysrc");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -247,6 +248,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = UrlUtils.MMXZG_COM+imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -357,6 +359,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = "https:"+imgElement.attr("lazysrc");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -447,6 +450,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = UrlUtils.MMXZG_COM+imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -527,6 +531,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = "https:"+imgElement.attr("lazysrc");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -619,6 +624,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = "https:"+imgElement.attr("lazysrc");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -874,6 +880,7 @@ public class MArticleJsoupService extends CommonService {
 										String src = imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();

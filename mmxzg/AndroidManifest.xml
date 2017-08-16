@@ -243,17 +243,17 @@
             android:description="@string/mmxzg_webview_desp" >
         </activity>
          <!-- pxing 主列表 -->
-        <activity
+        <!-- <activity
             android:name="com.open.mmxzg.activity.m.MArticlePullListActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_main_list_desp" >
-        </activity>
+        </activity> -->
         <!-- pxing 主列表grid -->
-        <activity
+        <!-- <activity
             android:name="com.open.mmxzg.activity.m.MArticlePullGridActivity"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_main_grid_desp" >
-        </activity>
+        </activity> -->
         <!-- pxing left menu -->
         <activity
             android:name="com.open.mmxzg.activity.m.MLeftMenuPullListActivity"

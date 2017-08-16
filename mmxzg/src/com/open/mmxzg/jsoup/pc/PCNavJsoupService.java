@@ -103,6 +103,7 @@ public class PCNavJsoupService extends CommonService {
 										String src = imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -387,6 +388,7 @@ public class PCNavJsoupService extends CommonService {
 										String src = imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
@@ -489,6 +491,7 @@ public class PCNavJsoupService extends CommonService {
 											String src = imgElement.attr("src");
 											Log.i(TAG, "j==" + j + ";src==" + src);
 											sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 										}
 									} catch (Exception e) {
@@ -586,6 +589,7 @@ public class PCNavJsoupService extends CommonService {
 											}
 											Log.i(TAG, "j==" + j + ";src==" + src);
 											sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 										}
 									} catch (Exception e) {
@@ -691,6 +695,7 @@ public class PCNavJsoupService extends CommonService {
 											String src = imgElement.attr("lazysrc");
 											Log.i(TAG, "j==" + j + ";src==" + src);
 											sbean.setSrc(src);
+										sbean.setDataimg(src);
 										}
 									} catch (Exception e) {
 										e.printStackTrace();
@@ -757,6 +762,7 @@ public class PCNavJsoupService extends CommonService {
 										String src = imgElement.attr("src");
 										Log.i(TAG, "i==" + i + ";src==" + src);
 										sbean.setSrc(src);
+										sbean.setDataimg(src);
 
 									}
 								} catch (Exception e) {
