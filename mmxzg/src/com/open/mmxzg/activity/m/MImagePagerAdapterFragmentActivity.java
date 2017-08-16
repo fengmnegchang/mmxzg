@@ -16,14 +16,14 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 
 import com.open.android.activity.CommonFragmentActivity;
 import com.open.android.weak.WeakActivityReferenceHandler;
-import com.open.mmxzg.fragment.m.MImagePagerAdapterFragment;
-import com.open.mmxzg.json.m.MArticleJson;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.fragment.mvp.MImagePagerAdapterMVPFragment;
+import com.open.mmxzg.json.m.MArticleJson;
+import com.open.mmxzg.presenter.impl.MImagePagerAdapterPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 
 /**
@@ -64,13 +64,23 @@ public class MImagePagerAdapterFragmentActivity extends CommonFragmentActivity<M
 		}
 		// TODO Auto-generated method stub
 		MArticleJson mShowJson = (MArticleJson) getIntent().getSerializableExtra("SHOW_JSON");
-		Fragment fragment;
+//		Fragment fragment;
+//		if(mShowJson!=null && mShowJson.getList()!=null&& mShowJson.getList().size()>0){
+//			fragment = MImagePagerAdapterFragment.newInstance(url, true,weakReferenceHandler,mShowJson.getList(),mShowJson.getCurrentPosition());
+//		}else{
+//			fragment = MImagePagerAdapterFragment.newInstance(url, true,weakReferenceHandler);
+//		}
+//		getSupportFragmentManager().beginTransaction().replace(R.id.layout_viewpager, fragment).commit();
+		
+		MImagePagerAdapterMVPFragment fragment;
 		if(mShowJson!=null && mShowJson.getList()!=null&& mShowJson.getList().size()>0){
-			fragment = MImagePagerAdapterFragment.newInstance(url, true,weakReferenceHandler,mShowJson.getList(),mShowJson.getCurrentPosition());
+			fragment = MImagePagerAdapterMVPFragment.newInstance(url, true,weakReferenceHandler,mShowJson.getList(),mShowJson.getCurrentPosition());
 		}else{
-			fragment = MImagePagerAdapterFragment.newInstance(url, true,weakReferenceHandler);
+			fragment = MImagePagerAdapterMVPFragment.newInstance(url, true,weakReferenceHandler);
 		}
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_viewpager, fragment).commit();
+		
+		new MImagePagerAdapterPresenterImpl(this, fragment, url);
 	}
  
 	/*
