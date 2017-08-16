@@ -120,10 +120,12 @@ public class PXingMainPagerPushService extends Service {
 		mNotification.when = System.currentTimeMillis();
 		// Navigator to the new activity when click the notification title
 		Intent i = new Intent(this, MImagePullListActivity.class);
+		i.setAction(System.currentTimeMillis()+"");
 		i.putExtra("URL", url);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i,PendingIntent.FLAG_UPDATE_CURRENT );
 		mNotification.setLatestEventInfo(this, getResources().getString(R.string.app_name)+" 养眼美女", msg, pendingIntent);
-		mManager.notify(0, mNotification);
+		mManager.notify(count, mNotification);
 	}
 
 	/**
