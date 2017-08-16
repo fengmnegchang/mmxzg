@@ -5,15 +5,14 @@
     android:background="#333"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true" >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/layout_titlebar"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:background="#333" 
-        android:id="@+id/layout_titlebar"
-        >
+        android:background="#333" >
 
         <TextView
             android:id="@+id/txt_left"
@@ -73,18 +72,23 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <com.handmark.pulltorefresh.library.PullToRefreshHeadGridView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/pull_refresh_grid"
+    <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:cacheColorHint="#00000000"
-        android:background="#ffffff"
-        android:horizontalSpacing="5dp"
-        android:numColumns="2"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp" />
+        android:layout_height="match_parent" >
+
+        <com.handmark.pulltorefresh.library.PullToRefreshHeadGridView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/pull_refresh_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:cacheColorHint="#00000000"
+            android:horizontalSpacing="5dp"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dp" />
+    </FrameLayout>
 
 </LinearLayout>
