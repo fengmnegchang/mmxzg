@@ -13,11 +13,11 @@ package com.open.mmxzg.activity.m;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
-import com.open.mmxzg.fragment.m.MMainIndicatorFragment;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.fragment.mvp.MMainIndicatorMVPFragment;
+import com.open.mmxzg.presenter.impl.MMainIndicatorPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -55,8 +55,10 @@ public class MMainIndicatorFragmentActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MMainIndicatorFragment.newInstance(url, true);
+		MMainIndicatorMVPFragment fragment = MMainIndicatorMVPFragment.newInstance(url, true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		
+		new MMainIndicatorPresenterImpl(this, fragment, url);
 	}
 
 	public static void startMMainIndicatorFragmentActivity(Context context, String url) {

@@ -2,14 +2,16 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-9上午11:11:51
+ * @createTime:2017-8-16上午11:27:21
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-package com.open.mmxzg.fragment.m;
+package com.open.mmxzg.fragment.mvp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,32 +24,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
 import com.open.android.adapter.CommonFragmentPagerAdapter;
-import com.open.android.bean.db.OpenDBBean;
-import com.open.android.db.service.OpenDBService;
-import com.open.android.fragment.BaseV4Fragment;
-import com.open.android.utils.NetWorkUtils;
+import com.open.android.fragment.BaseV4MVPFragment;
 import com.open.indicator.TabPageIndicator;
 import com.open.mmxzg.R;
 import com.open.mmxzg.bean.m.MSlideMenuBean;
-import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
 import com.open.mmxzg.json.m.MSlideMenuJson;
-import com.open.mmxzg.jsoup.m.MLeftMenuJsoupService;
+import com.open.mmxzg.presenter.MMainIndicatorPresenter;
 import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
+import com.open.mmxzg.view.MMainIndicatorView;
 
 /**
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-6-9上午11:11:51
+ * @createTime:2017-8-16上午11:27:21
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMainIndicatorFragment> {
+public class MMainIndicatorMVPFragment extends BaseV4MVPFragment<MSlideMenuJson, MMainIndicatorMVPFragment> implements MMainIndicatorView<MSlideMenuJson, MMainIndicatorPresenter> {
 	public ArrayList<MSlideMenuBean> list = new ArrayList<MSlideMenuBean>();
 	public ViewPager viewpager;
 	public TabPageIndicator indicator;
@@ -55,9 +53,10 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 	public List<Fragment> listRankFragment = new ArrayList<Fragment>();// view数组
 	public CommonFragmentPagerAdapter mRankPagerAdapter;
 	public List<MArticlePullGridPresenterImpl> listPresenterImpl = new ArrayList<MArticlePullGridPresenterImpl>();// 
-
-	public static MMainIndicatorFragment newInstance(String url, boolean isVisibleToUser) {
-		MMainIndicatorFragment fragment = new MMainIndicatorFragment();
+	private MMainIndicatorPresenter mPresenter;
+	
+	public static MMainIndicatorMVPFragment newInstance(String url, boolean isVisibleToUser) {
+		MMainIndicatorMVPFragment fragment = new MMainIndicatorMVPFragment();
 		fragment.setFragment(fragment);
 		fragment.setUserVisibleHint(isVisibleToUser);
 		fragment.url = url;
@@ -71,7 +70,13 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 		indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
 		return view;
 	}
-
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		mPresenter.start();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -85,38 +90,21 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 		viewpager.setAdapter(mRankPagerAdapter);
 		indicator.setViewPager(viewpager);
 	}
+	
+	 
 
+	/* (non-Javadoc)
+	 * @see com.open.android.mvp.base.BaseView#setPresenter(java.lang.Object)
+	 */
 	@Override
-	public MSlideMenuJson call() throws Exception {
+	public void setPresenter(MMainIndicatorPresenter presenter) {
 		// TODO Auto-generated method stub
-		MSlideMenuJson mMSlideMenuJson = new MSlideMenuJson();
-		String typename = "MLeftMenuJsoupService-parseNavMenuList-"+pageNo;
-		if(NetWorkUtils.isNetworkAvailable(getActivity())){
-			mMSlideMenuJson.setList(MLeftMenuJsoupService.parseNavMenuList(url, pageNo));
-			try {
-				//数据存储
-				Gson gson = new Gson();
-				OpenDBBean  openbean = new OpenDBBean();
-	    	    openbean.setUrl(url);
-	    	    openbean.setTypename(typename);
-			    openbean.setTitle(gson.toJson(mMSlideMenuJson));
-			    OpenDBService.insert(getActivity(), openbean);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else{
-			List<OpenDBBean> beanlist =  OpenDBService.queryListType(getActivity(), url,typename);
-			String result = beanlist.get(0).getTitle();
-			Gson gson = new Gson();
-			mMSlideMenuJson = gson.fromJson(result, MSlideMenuJson.class);
-		}
-		return mMSlideMenuJson;
+		mPresenter = checkNotNull(presenter);
 	}
-
+	
 	@Override
 	public void onCallback(MSlideMenuJson result) {
 		// TODO Auto-generated method stub
-		super.onCallback(result);
 		if(result==null){
 			return;
 		}
@@ -143,24 +131,24 @@ public class MMainIndicatorFragment extends BaseV4Fragment<MSlideMenuJson, MMain
 		}
 		mRankPagerAdapter.notifyDataSetChanged();
 		indicator.notifyDataSetChanged();
-		
-		 
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.open.tencenttv.BaseV4Fragment#handlerMessage(android.os.Message)
+	 * @see
+	 * com.open.enrz.fragment.BaseV4Fragment#handlerMessage(android.os.Message)
 	 */
 	@Override
 	public void handlerMessage(Message msg) {
 		// TODO Auto-generated method stub
 		switch (msg.what) {
 		case MESSAGE_HANDLER:
-			doAsync(this, this, this);
+			mPresenter.doAsync();
 			break;
 		default:
 			break;
 		}
 	}
+
 }

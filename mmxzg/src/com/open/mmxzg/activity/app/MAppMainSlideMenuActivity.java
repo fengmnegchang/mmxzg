@@ -12,7 +12,6 @@
 package com.open.mmxzg.activity.app;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.Window;
 
@@ -20,7 +19,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.open.mmxzg.R;
 import com.open.mmxzg.fragment.app.MAppLeftMenuPullListFragmnet;
-import com.open.mmxzg.fragment.m.MMainIndicatorFragment;
+import com.open.mmxzg.fragment.mvp.MMainIndicatorMVPFragment;
+import com.open.mmxzg.presenter.impl.MMainIndicatorPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
@@ -49,8 +49,9 @@ public class MAppMainSlideMenuActivity extends SlidingFragmentActivity {
 		// url = "http://www.umei.cc/bizhitupian/diannaobizhi/7628.htm";
 		// Fragment fragment = UmeiArticlePagerFragment.newInstance(url, true);
 //		Fragment fragment = MIndexPagerFragment.newInstance(url,true);
-		Fragment fragment = MMainIndicatorFragment.newInstance(url,true);
+		MMainIndicatorMVPFragment fragment = MMainIndicatorMVPFragment.newInstance(url,true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_viewpager, fragment).commit();
+		new MMainIndicatorPresenterImpl(this, fragment, url);
 	}
 	
 //	@Override
