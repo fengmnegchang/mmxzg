@@ -13,13 +13,13 @@ package com.open.mmxzg.activity.app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
-import com.open.mmxzg.fragment.app.MCollectionGridFragment;
-import com.open.mmxzg.utils.UrlUtils;
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.m.MCommonTitleBarActivity;
+import com.open.mmxzg.fragment.mvp.MCollectionGridMVPFragment;
+import com.open.mmxzg.presenter.impl.MCollectionGridPresenterImpl;
+import com.open.mmxzg.utils.UrlUtils;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -71,7 +71,7 @@ public class MCollectionGridFragmentActivity extends MCommonTitleBarActivity{
 			}else{
 				setRightTextValue("完成");
 			}
-			MCollectionGridFragment fragment = (MCollectionGridFragment) getSupportFragmentManager()
+			MCollectionGridMVPFragment fragment = (MCollectionGridMVPFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.layout_content);
 			fragment.setEditable(editable);
 			editable = !editable;
@@ -94,8 +94,10 @@ public class MCollectionGridFragmentActivity extends MCommonTitleBarActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MCollectionGridFragment.newInstance(url, true);
+		MCollectionGridMVPFragment fragment = MCollectionGridMVPFragment.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.layout_content, fragment).commit();
+		
+		new MCollectionGridPresenterImpl(this, fragment);
 	}
 
 	public static void startMCollectionGridFragmentActivity(Context context, String url) {
