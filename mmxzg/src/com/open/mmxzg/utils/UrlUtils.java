@@ -52,4 +52,5 @@ public class UrlUtils {
 	public static final String MMXZG = "http://www.mmxzg.com/";
 	public static final String MMXZG_COM = "http://www.mmxzg.com";
 	public static final String MMXZG_IMAGE="http://www.mmxzg.com/mote/1384.html";
+	public static final String MMXZG_E_WAP="http://www.mmxzg.com/e/wap";
 }

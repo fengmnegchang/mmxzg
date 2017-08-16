@@ -348,7 +348,12 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_qq_auth_login_desp" >
         </activity>
-        
+        <!-- pxing wap left menu -->
+        <activity
+            android:name="com.open.mmxzg.activity.mvp.MWapLeftMenuPullListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_mvp_wap_left_menu_list_desp" >
+        </activity>
         <!-- 所有类列表 -->
         <activity
             android:name="com.open.android.activity.common.CommonALLActivity"
