@@ -12,7 +12,6 @@
 package com.open.mmxzg.activity.m;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.Window;
 
@@ -21,7 +20,9 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.open.mmxzg.R;
 import com.open.mmxzg.fragment.m.MLeftMenuPullListFragmnet;
 import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
+import com.open.mmxzg.fragment.mvp.MLeftMenuPullListMVPFragment;
 import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
+import com.open.mmxzg.presenter.impl.MLeftMenuPullListPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
@@ -59,7 +60,9 @@ public class MMainSlideMenuActivity extends SlidingFragmentActivity {
 
 		setBehindContentView(R.layout.left_menu_frame);
 //		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,new MenuLeftFragment()).commit();
-		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,MLeftMenuPullListFragmnet.newInstance(url, true)).commit();
+		MLeftMenuPullListMVPFragment frament = MLeftMenuPullListMVPFragment.newInstance(true);
+		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,frament).commit();
+		new MLeftMenuPullListPresenterImpl(this, frament, url);
 		
 		SlidingMenu menu = getSlidingMenu();
 		menu.setMode(SlidingMenu.LEFT);

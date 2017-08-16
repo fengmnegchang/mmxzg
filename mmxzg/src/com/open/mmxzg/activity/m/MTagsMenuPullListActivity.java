@@ -13,11 +13,11 @@ package com.open.mmxzg.activity.m;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 
 import com.open.android.R;
 import com.open.android.activity.common.CommonCommonFragmentActivity;
-import com.open.mmxzg.fragment.m.MTagsMenuPullListFragmnet;
+import com.open.mmxzg.fragment.mvp.MTagsMenuPullListMVPFragmnet;
+import com.open.mmxzg.presenter.impl.MTagsMenuPullListPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
 /**
@@ -56,8 +56,10 @@ public class MTagsMenuPullListActivity extends CommonCommonFragmentActivity{
 	@Override
 	public void addfragment() {
 		// TODO Auto-generated method stub
-		Fragment fragment = MTagsMenuPullListFragmnet.newInstance(url, true);
+		MTagsMenuPullListMVPFragmnet fragment = MTagsMenuPullListMVPFragmnet.newInstance(true);
 		getSupportFragmentManager().beginTransaction().replace(R.id.id_common_fragment, fragment).commit();
+		
+		new MTagsMenuPullListPresenterImpl(this, fragment, url);
 	}
 
 	public static void startMTagsMenuPullListActivity(Context context, String url) {
