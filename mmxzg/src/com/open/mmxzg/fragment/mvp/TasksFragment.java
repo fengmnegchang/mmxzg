@@ -141,11 +141,11 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         // Set up progress indicator
         final ScrollChildSwipeRefreshLayout swipeRefreshLayout =
                 (ScrollChildSwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
-        swipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
-                ContextCompat.getColor(getActivity(), R.color.colorAccent),
-                ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)
-        );
+//        swipeRefreshLayout.setColorSchemeColors(
+//                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
+//                ContextCompat.getColor(getActivity(), R.color.colorAccent),
+//                ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)
+//        );
         // Set the scrolling view in the custom SwipeRefreshLayout.
         swipeRefreshLayout.setScrollUpChild(listView);
 

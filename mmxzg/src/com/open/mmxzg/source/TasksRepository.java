@@ -99,7 +99,7 @@ public class TasksRepository implements TasksDataSource {
 
         // Respond immediately with cache if available and not dirty
         if (mCachedTasks != null && !mCacheIsDirty) {
-            callback.onTasksLoaded(new ArrayList<>(mCachedTasks.values()));
+            callback.onTasksLoaded(new ArrayList<Task>(mCachedTasks.values()));
             return;
         }
 
@@ -112,7 +112,7 @@ public class TasksRepository implements TasksDataSource {
                 @Override
                 public void onTasksLoaded(List<Task> tasks) {
                     refreshCache(tasks);
-                    callback.onTasksLoaded(new ArrayList<>(mCachedTasks.values()));
+                    callback.onTasksLoaded(new ArrayList<Task>(mCachedTasks.values()));
                 }
 
                 @Override
@@ -131,7 +131,7 @@ public class TasksRepository implements TasksDataSource {
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         mCachedTasks.put(task.getId(), task);
     }
@@ -146,7 +146,7 @@ public class TasksRepository implements TasksDataSource {
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         mCachedTasks.put(task.getId(), completedTask);
     }
@@ -167,7 +167,7 @@ public class TasksRepository implements TasksDataSource {
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         mCachedTasks.put(task.getId(), activeTask);
     }
@@ -185,7 +185,7 @@ public class TasksRepository implements TasksDataSource {
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         Iterator<Map.Entry<String, Task>> it = mCachedTasks.entrySet().iterator();
         while (it.hasNext()) {
@@ -224,7 +224,7 @@ public class TasksRepository implements TasksDataSource {
             public void onTaskLoaded(Task task) {
                 // Do in memory cache update to keep the app UI up to date
                 if (mCachedTasks == null) {
-                    mCachedTasks = new LinkedHashMap<>();
+                    mCachedTasks = new LinkedHashMap<String,Task>();
                 }
                 mCachedTasks.put(task.getId(), task);
                 callback.onTaskLoaded(task);
@@ -237,7 +237,7 @@ public class TasksRepository implements TasksDataSource {
                     public void onTaskLoaded(Task task) {
                         // Do in memory cache update to keep the app UI up to date
                         if (mCachedTasks == null) {
-                            mCachedTasks = new LinkedHashMap<>();
+                            mCachedTasks = new LinkedHashMap<String,Task>();
                         }
                         mCachedTasks.put(task.getId(), task);
                         callback.onTaskLoaded(task);
@@ -263,7 +263,7 @@ public class TasksRepository implements TasksDataSource {
         mTasksLocalDataSource.deleteAllTasks();
 
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         mCachedTasks.clear();
     }
@@ -282,7 +282,7 @@ public class TasksRepository implements TasksDataSource {
             public void onTasksLoaded(List<Task> tasks) {
                 refreshCache(tasks);
                 refreshLocalDataSource(tasks);
-                callback.onTasksLoaded(new ArrayList<>(mCachedTasks.values()));
+                callback.onTasksLoaded(new ArrayList<Task>(mCachedTasks.values()));
             }
 
             @Override
@@ -294,7 +294,7 @@ public class TasksRepository implements TasksDataSource {
 
     private void refreshCache(List<Task> tasks) {
         if (mCachedTasks == null) {
-            mCachedTasks = new LinkedHashMap<>();
+            mCachedTasks = new LinkedHashMap<String,Task>();
         }
         mCachedTasks.clear();
         for (Task task : tasks) {
