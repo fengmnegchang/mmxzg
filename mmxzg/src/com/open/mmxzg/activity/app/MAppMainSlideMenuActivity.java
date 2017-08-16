@@ -18,8 +18,9 @@ import android.view.Window;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.open.mmxzg.R;
-import com.open.mmxzg.fragment.app.MAppLeftMenuPullListFragmnet;
+import com.open.mmxzg.fragment.mvp.MAppLeftMenuPullListMVPFragmnet;
 import com.open.mmxzg.fragment.mvp.MMainIndicatorMVPFragment;
+import com.open.mmxzg.presenter.impl.MAppLeftMenuPullListPresenterImpl;
 import com.open.mmxzg.presenter.impl.MMainIndicatorPresenterImpl;
 import com.open.mmxzg.utils.UrlUtils;
 
@@ -71,7 +72,9 @@ public class MAppMainSlideMenuActivity extends SlidingFragmentActivity {
 
 		setBehindContentView(R.layout.left_menu_frame);
 //		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,new MenuLeftFragment()).commit();
-		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,MAppLeftMenuPullListFragmnet.newInstance(url, true)).commit();
+		MAppLeftMenuPullListMVPFragmnet fragment = MAppLeftMenuPullListMVPFragmnet.newInstance(true);
+		getSupportFragmentManager().beginTransaction().replace(R.id.id_left_menu_frame,fragment).commit();
+		new MAppLeftMenuPullListPresenterImpl(this, fragment, url);
 		
 		SlidingMenu menu = getSlidingMenu();
 		menu.setMode(SlidingMenu.LEFT);

@@ -40,7 +40,7 @@ import com.open.mmxzg.view.MLeftMenuPullListView;
  *****************************************************************************************************************************************************************************
  */
 public class MLeftMenuPullListPresenterImpl extends   CommonAsyncTaskPresenter<MSlideMenuJson> implements MLeftMenuPullListPresenter{
-	private MLeftMenuPullListView mMLeftMenuPullListView;
+	public MLeftMenuPullListView mMLeftMenuPullListView;
 
 	public MLeftMenuPullListPresenterImpl(Context context, @NonNull MLeftMenuPullListView view, String url) {
 		mMLeftMenuPullListView = checkNotNull(view, "mMLeftMenuPullListView cannot be null!");

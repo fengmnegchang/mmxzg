@@ -18,7 +18,6 @@ import android.view.Window;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.open.mmxzg.R;
-import com.open.mmxzg.fragment.m.MLeftMenuPullListFragmnet;
 import com.open.mmxzg.fragment.mvp.MArticlePullGridMVPFragment2;
 import com.open.mmxzg.fragment.mvp.MLeftMenuPullListMVPFragment;
 import com.open.mmxzg.presenter.impl.MArticlePullGridPresenterImpl;
