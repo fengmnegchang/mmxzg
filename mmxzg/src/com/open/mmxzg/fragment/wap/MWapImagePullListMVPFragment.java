@@ -77,7 +77,6 @@ public class MWapImagePullListMVPFragment extends MImagePullListMVPFragment {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		super.onItemClick(parent, view, position, id);
 		if (id != -1 && list.get((int) id) != null) {
 			MArticleJson mMArticleJson = new MArticleJson();
 			mMArticleJson.setList(list);

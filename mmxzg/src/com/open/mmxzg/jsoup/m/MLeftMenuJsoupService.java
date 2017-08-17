@@ -215,8 +215,7 @@ public class MLeftMenuJsoupService extends CommonService {
 								try {
 									Element aElement = moduleElements.get(i).select("a").first();
 									if (aElement != null) {
-										String hrefa = UrlUtils.MMXZG_E_WAP+aElement.attr("href");
-										 
+										String hrefa = UrlUtils.MMXZG_E_WAP+"/"+aElement.attr("href");
 										Log.i(TAG, "i==" + i + ";hrefa==" + hrefa);
 										sbean.setHref(hrefa);
 									}

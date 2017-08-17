@@ -53,6 +53,7 @@
 	<string name="mmxzg_mvp_wap_image_list_desp">mmxzg wap看图</string>
 	<string name="mmxzg_mvp_wap_image_foot_desp">mmxzg wap看图foot</string>
 	<string name="mmxzg_mvp_wap_image_pager_list_desp">mmxzg wap看图pager</string>
+	<string name="mmxzg_mvp_wap_slide_menu_desp">mmxzg wap menu</string>
 	
 	<string name="ok">确认</string>
     <string name="cancel">取消</string>

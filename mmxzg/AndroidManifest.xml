@@ -379,6 +379,14 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_mvp_wap_image_pager_list_desp" >
         </activity>
+        <!-- pxing wap menu-->
+        <activity
+            android:name="com.open.mmxzg.activity.wap.MWapMainSlideMenuActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_mvp_wap_slide_menu_desp"
+            android:theme="@style/Theme.PageIndicatorDefaults"
+            >
+        </activity>
         <!-- 所有类列表 -->
         <activity
             android:name="com.open.android.activity.common.CommonALLActivity"

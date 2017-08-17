@@ -16,7 +16,7 @@ import android.widget.AdapterView;
 
 import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
-import com.open.mmxzg.activity.m.MImagePullListActivity;
+import com.open.mmxzg.activity.wap.MWapImagePullListActivity;
 import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.fragment.mvp.MImageFootExpendGridMVPFragmnet;
 
@@ -62,7 +62,7 @@ public class MWapImageFootExpendGridMVPFragmnet extends MImageFootExpendGridMVPF
 			openbean.setTypename(1+"");
 			OpenDBService.insert(getActivity(), openbean);
 
-			MImagePullListActivity.startMImagePullListActivity(getActivity(),
+			MWapImagePullListActivity.startMWapImagePullListActivity(getActivity(),
 					bean.getHref());
 		}
 	}
