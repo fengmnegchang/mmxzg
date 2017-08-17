@@ -38,7 +38,7 @@ public class TasksRemoteDataSource implements TasksDataSource {
     private final static Map<String, Task> TASKS_SERVICE_DATA;
 
     static {
-        TASKS_SERVICE_DATA = new LinkedHashMap<>(2);
+        TASKS_SERVICE_DATA = new LinkedHashMap<String, Task>(2);
         addTask("Build tower in Pisa", "Ground looks good, no foundation work required.");
         addTask("Finish bridge in Tacoma", "Found awesome girders at half the cost!");
     }
