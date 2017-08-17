@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.open.mmxzg.PXingWebViewActivity;
-import com.open.mmxzg.activity.mvp.MArticlePullGridMVPActivity;
+import com.open.mmxzg.activity.wap.MWapArticlePullGridMVPActivity;
 import com.open.mmxzg.bean.m.MSlideMenuBean;
 
 /**
@@ -46,12 +46,7 @@ public class MWapLeftMenuPullListMVPFragmnet extends MLeftMenuPullListMVPFragmen
 			if(id!=-1){
 				MSlideMenuBean bean = list.get((int)id);
 				if(bean!=null){
-					if("动态图片".equals(bean.getTitle()) || "性爱技巧".equals(bean.getTitle())){
-						PXingWebViewActivity.startPXingWebViewActivity(getActivity(), bean.getHref());
-					}else{
-						MArticlePullGridMVPActivity.startMArticlePullGridMVPActivity(getActivity(), bean.getHref());
-					}
-					
+					 MWapArticlePullGridMVPActivity.startMWapArticlePullGridMVPActivity(getActivity(), bean.getHref());
 				}
 			}
 			

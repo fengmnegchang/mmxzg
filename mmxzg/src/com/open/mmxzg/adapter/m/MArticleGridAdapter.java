@@ -28,13 +28,11 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.animated.base.AbstractAnimatedDrawable;
 import com.facebook.imagepipeline.image.ImageInfo;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.open.android.activity.common.CommonWebViewActivity;
 import com.open.android.adapter.CommonAdapter;
-import com.open.mmxzg.bean.m.MArticleBean;
 import com.open.mmxzg.R;
+import com.open.mmxzg.activity.m.MImagePullListActivity;
+import com.open.mmxzg.bean.m.MArticleBean;
 
 /**
  *****************************************************************************************************************************************************************************
@@ -68,10 +66,15 @@ public class MArticleGridAdapter extends CommonAdapter<MArticleBean>{
 		}
 		final MArticleBean bean = (MArticleBean) getItem(position);
 		if (bean != null) {
-			viewHolder.text_camLiDes.setText(bean.getMeta());
+			viewHolder.text_camLiDes.setText(bean.getTag());
 			viewHolder.text_title.setText(bean.getAlt());
 			//https://img.pximg.com/2017/07/d264b5b3ac0169a.jpg!pximg/both/205x277
-			 
+			viewHolder.text_camLiDes.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					CommonWebViewActivity.startCommonWebViewActivity(mContext, bean.getTaghref());
+				}
+			});
 			if (bean.getSrc()!= null && bean.getSrc().length() > 0) {
 //				DisplayImageOptions options = new DisplayImageOptions.Builder().showStubImage(R.drawable.default_img).showImageForEmptyUri(R.drawable.default_img).showImageOnFail(R.drawable.default_img)
 ////						.cacheInMemory().cacheOnDisc().build();

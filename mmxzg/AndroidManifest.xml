@@ -354,6 +354,31 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:description="@string/mmxzg_mvp_wap_left_menu_list_desp" >
         </activity>
+        <!-- pxing wap主列表mvp grid-->
+         <activity
+            android:name="com.open.mmxzg.activity.wap.MWapArticlePullGridMVPActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:theme="@style/AppTheme"
+            android:description="@string/mmxzg_mvp_wap_main_grid_desp" >
+        </activity>
+        <!-- pxing wap看图 -->
+        <activity
+            android:name="com.open.mmxzg.activity.wap.MWapImagePullListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_mvp_wap_image_list_desp" >
+        </activity>
+        <!-- pxing wap看图foot -->
+        <activity
+            android:name="com.open.mmxzg.activity.wap.MWapImageFootListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_mvp_wap_image_foot_desp" >
+        </activity>
+        <!-- pxing wap看图pager -->
+        <activity
+            android:name="com.open.mmxzg.activity.wap.MWapImagePagerAdapterFragmentActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:description="@string/mmxzg_mvp_wap_image_pager_list_desp" >
+        </activity>
         <!-- 所有类列表 -->
         <activity
             android:name="com.open.android.activity.common.CommonALLActivity"

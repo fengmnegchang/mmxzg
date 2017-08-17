@@ -2,7 +2,7 @@
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-8-14下午5:46:30
+ * @createTime:2017-8-17上午9:41:38
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
@@ -11,54 +11,34 @@
  */
 package com.open.mmxzg.presenter.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.open.android.bean.db.OpenDBBean;
 import com.open.android.db.service.OpenDBService;
-import com.open.android.mvp.base.CommonAsyncTaskPresenter;
 import com.open.android.utils.NetWorkUtils;
 import com.open.mmxzg.json.m.MArticleJson;
 import com.open.mmxzg.jsoup.m.MArticleJsoupService;
-import com.open.mmxzg.presenter.MArticlePullGridPresenter;
 import com.open.mmxzg.view.MArticlePullGridView;
 
 /**
  *****************************************************************************************************************************************************************************
  * 
  * @author :fengguangjing
- * @createTime:2017-8-14下午5:46:30
+ * @createTime:2017-8-17上午9:41:38
  * @version:4.2.4
  * @modifyTime:
  * @modifyAuthor:
  * @description:
  *****************************************************************************************************************************************************************************
  */
-public class MArticlePullGridPresenterImpl extends CommonAsyncTaskPresenter<MArticleJson> implements MArticlePullGridPresenter{
-	public MArticlePullGridView mMArticlePullGridView;
-	
-	public MArticlePullGridPresenterImpl(Context context, @NonNull MArticlePullGridView view,String url) {
-		mMArticlePullGridView = checkNotNull(view, "mMArticlePullGridView cannot be null!");
-		mMArticlePullGridView.setPresenter(this);
-		this.mContext = context;
-		this.url = url;
-	}
+public class MWapArticlePullGridPresenterImpl extends MArticlePullGridPresenterImpl {
 
-	 
-	/* (non-Javadoc)
-	 * @see com.open.mmxzg.mvp.base.BasePresenter#start()
-	 */
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		
+	public MWapArticlePullGridPresenterImpl(Context context, MArticlePullGridView view, String url) {
+		super(context, view, url);
 	}
-	
 	
 	/*
 	 * (non-Javadoc)
@@ -72,11 +52,14 @@ public class MArticlePullGridPresenterImpl extends CommonAsyncTaskPresenter<MArt
 		MArticleJson mMArticleJson = new MArticleJson();
 		String href = url;
 		if(pageNo>1){
-			href = url+"index_"+pageNo+".html";
+			//http://www.mmxzg.com/e/wap/list.php?classid=1&style=0&bclassid=
+			//http://www.mmxzg.com/e/wap/list.php?page=1&classid=1&style=0&bclassid=0&totalnum=990
+			//http://www.mmxzg.com/e/wap/
+			href = url+"0&page="+pageNo;
 		}
-		String typename = "MArticleJsoupService-parseMmxzgList-"+pageNo;
+		String typename = "MArticleJsoupService-parseMmxzgWapList-"+pageNo;
 		if(NetWorkUtils.isNetworkAvailable(mContext)){
-			mMArticleJson.setList(MArticleJsoupService.parseMmxzgList(href, pageNo));
+			mMArticleJson.setList(MArticleJsoupService.parseMmxzgWapList(href, pageNo));
 			try {
 				//数据存储
 				Gson gson = new Gson();
@@ -104,41 +87,6 @@ public class MArticlePullGridPresenterImpl extends CommonAsyncTaskPresenter<MArt
 			mMArticleJson = gson.fromJson(result, MArticleJson.class);
 		}
 		return mMArticleJson;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.open.android.fragment.common.CommonPullToRefreshListFragment#onCallback
-	 * (com.open.android.json.CommonJson)
-	 */
-	@Override
-	public void onCallback(MArticleJson result) {
-		mMArticlePullGridView.onCallback(result);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.open.mmxzg.model.MArticlePullListContract.Presenter#handlerMessage()
-	 */
-	@Override
-	public void doAsync() {
-		// TODO Auto-generated method stub
-		try {
-			doAsync(this, this, this);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see com.open.mmxzg.model.MArticlePullListContract.Presenter#setPageNo(int)
-	 */
-	@Override
-	public void setPageNo(int pageNo) {
-		// TODO Auto-generated method stub
-		this.pageNo = pageNo;
 	}
 
 }
