@@ -60,14 +60,14 @@ import com.xiaomi.mistatistic.sdk.data.HttpEvent;
  */
 public class PXingApplication extends Application {
 	 // user your appid the key.
-    private static final String APP_ID = "2882303761517603982";
+    private static final String APP_ID = "2882303761517606908";
     // user your appid the key.
-    private static final String APP_KEY = "5111760359982";
+    private static final String APP_KEY = "5351760671908";
     
-    private static final String APP_SECRET="kootiUKfsCSGfDCyv2UOTA==";
+    private static final String APP_SECRET="yv0F48oGm8lenuJ4jzqahQ==";
     // 此TAG在adb logcat中检索自己所需要的信息， 只需在命令行终端输入 adb logcat | grep
     // com.xiaomi.mipushdemo
-    public static final String TAG = "com.open.pxing";
+    public static final String TAG = "com.open.mmxzg";
     private static DemoHandler sHandler = null;
 	
 	public interface MsgDisplayListener {
