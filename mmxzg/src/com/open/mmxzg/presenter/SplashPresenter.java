@@ -72,9 +72,9 @@ public class SplashPresenter implements SplashContract.Presenter {
 		// if (Build.VERSION.SDK_INT >= 23) {
 		// requestExternalStoragePermission();
 		// }
-		MiPushClient.setAlias(mContext, DeviceUtils.getDeviceId(mContext), null);
-		Log.d("SplashActivity", "Alias===" + DeviceUtils.getDeviceId(mContext));
-		MiPushClient.resumePush(mContext, null);
+//		MiPushClient.setAlias(mContext, DeviceUtils.getDeviceId(mContext), null);
+//		Log.d("SplashActivity", "Alias===" + DeviceUtils.getDeviceId(mContext));
+//		MiPushClient.resumePush(mContext, null);
 //		PXingApplication.msgDisplayListener = new PXingApplication.MsgDisplayListener() {
 //			@Override
 //			public void handle(final String msg) {
